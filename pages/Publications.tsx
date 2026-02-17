@@ -14,7 +14,7 @@ const Publications: React.FC<{ locale: Locale }> = ({ locale }) => {
   // Use fetch for JSON data to ensure compatibility with standard browser ESM 
   // which often restricts JSON imports without specific assertions.
   useEffect(() => {
-    fetch('./data/publications.json')
+    fetch('/publications.json')
       .then(res => res.json())
       .then(data => setPublications(data))
       .catch(err => console.error("Failed to load publications:", err));
