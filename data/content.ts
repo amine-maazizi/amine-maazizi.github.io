@@ -90,6 +90,16 @@ export const researchExperience: Record<string, ContentEntry[]> = {
 export const projects: Record<string, ContentEntry[]> = {
   en: [
     {
+      id: 'proj-shapematch',
+      title: 'Geometry-aware shape matching software for biological microscopy',
+      role: 'Research collaborator',
+      summary:
+        'Geometry-aware shape matching software developed in collaboration with Institut Pasteur, enabling biologists to compare surface meshes while incorporating optional mechanical constraints (e.g., curvature-based membrane models). Designed as a general, user-accessible tool so researchers without advanced computational geometry background can perform constrained shape analysis on experimental imaging data.',
+      body: '',
+      tags: ['geometric-deep-learning', 'shape-matching', 'computational-biology', 'differential-geometry', 'biological-imaging'],
+      thumbnail: '/images/pasteur.jpg'
+    },
+    {
       id: 'proj-notmiwae',
       title: 'not-MIWAE: PyTorch implementation for MNAR imputation',
       role: 'Author and maintainer',
@@ -105,7 +115,7 @@ export const projects: Record<string, ContentEntry[]> = {
       title: 'Clairvoyance: assistive vision system for smart glasses',
       role: 'Lead developer',
       summary:
-        'Assistive computer vision pipeline for wearable smart glasses combining depth estimation, object detection + classification, and OCR for real-time scene understanding. Implements a two-stage agentic workflow: a custom-trained language model to handle planned/known scenarios, with a fallback LLM-based agent to respond to unplanned user requests. Includes an embedded hardware stack (camera + Raspberry Pi) and an edge-optimized inference pipeline.',
+        'Assistive computer vision pipeline for wearable smart glasses combining depth estimation, object detection + classification, and OCR for real-time scene understanding. Implements a two-stage agentic workflow: a custom-trained language model to handle planned/known scenarios, with a fallback LLM-based agent to respond to unplanned user requests. Includes an embedded hardware stack and an edge-optimized inference pipeline.',
       body: '',
       tags: ['computer-vision', 'edge-ai', 'accessibility', 'embedded-systems'],
       links: [{ label: 'code', url: 'https://github.com/amine-maazizi/PIE-Clairvoyance' }],
@@ -124,6 +134,16 @@ export const projects: Record<string, ContentEntry[]> = {
     }
   ],
   fr: [
+        {
+      id: 'proj-shapematch',
+      title: 'Logiciel de mise en correspondance de formes sensible à la géométrie pour microscopie biologique',
+      role: 'Collaborateur de recherche',
+      summary:
+        "Logiciel de mise en correspondance de formes sensible à la géométrie développé en collaboration avec Institut Pasteur, permettant aux biologistes de comparer les maillages de surface tout en incorporant des contraintes mécaniques optionnelles (par exemple, modèles de membrane basés sur la courbure). Conçu comme un outil général et accessible aux utilisateurs, permettant aux chercheurs sans expertise en géométrie computationnelle avancée d'effectuer une analyse de formes sous contraintes sur des données d'imagerie expérimentale.",
+      body: '',
+      tags: ['apprentissage-géométrique-profond', 'alignement-de-formes', 'biologie-computationnelle', 'géométrie-différentielle', 'imagerie-biologique'],
+      thumbnail: '/images/pasteur.jpg'
+    },
     {
       id: 'proj-notmiwae',
       title: 'not-MIWAE : implémentation PyTorch pour imputation MNAR',
@@ -140,7 +160,7 @@ export const projects: Record<string, ContentEntry[]> = {
       title: 'Clairvoyance : système de vision assistive pour lunettes connectées',
       role: 'Développeur principal',
       summary:
-        "Pipeline de vision assistive pour lunettes connectées combinant estimation de profondeur, détection + classification d’objets et OCR pour une compréhension de scène en temps réel. Met en place un workflow agentique en deux étapes : un modèle de langage entraîné sur mesure pour gérer des scénarios planifiés/connus, avec un agent basé sur un LLM en repli pour répondre à des requêtes utilisateur non prévues. Inclut une pile matérielle embarquée (caméra + Raspberry Pi) et une chaîne d’inférence optimisée pour l’edge.",
+        "Pipeline de vision assistive pour lunettes connectées combinant estimation de profondeur, détection + classification d’objets et OCR pour une compréhension de scène en temps réel. Met en place un workflow agentique en deux étapes : un modèle de langage entraîné sur mesure pour gérer des scénarios planifiés/connus, avec un agent basé sur un LLM en repli pour répondre à des requêtes utilisateur non prévues. Inclut une pile matérielle embarquée et une chaîne d’inférence optimisée pour l’edge.",
       body: '',
       tags: ['vision-par-ordinateur', 'edge-ai', 'accessibilité', 'systèmes-embarqués'],
       links: [{ label: 'code', url: 'https://github.com/amine-maazizi/PIE-Clairvoyance' }],
@@ -187,8 +207,15 @@ export const updates: Record<string, ContentEntry[]> = {
     { 
       id: 'up-poster', 
       title: 'Poster Presentation at ENS Paris-Saclay', 
-      date: '2024-12', 
+      date: '2025-12', 
       summary: 'Presented "not-MIWAE and a Supervised MNAR Extension" at the ENS Paris-Saclay Atrium.', 
+      body: '' 
+    },
+    { 
+      id: 'up-shapematch-dev', 
+      title: 'Development of shape-matching research software', 
+      date: '2025-10', 
+      summary: 'Started development of a collaborative research library with Institut Pasteur to provide biologists an accessible tool for constrained mesh shape matching.', 
       body: '' 
     },
     { 
@@ -210,15 +237,22 @@ export const updates: Record<string, ContentEntry[]> = {
     { 
       id: 'up-poster', 
       title: 'Présentation de poster à l\'ENS Paris-Saclay', 
-      date: '2024-12', 
-      summary: 'Présentation des travaux « not-MIWAE and a Supervised MNAR Extension » à l’Atrium de l’ENS Paris-Saclay.', 
+      date: '2025-12', 
+      summary: 'Présentation des travaux « not-MIWAE and a Supervised MNAR Extension » à l\'Atrium de l\'ENS Paris-Saclay.', 
+      body: '' 
+    },
+    { 
+      id: 'up-shapematch-dev', 
+      title: 'Développement d\'un logiciel de mise en correspondance de formes', 
+      date: '2025-10', 
+      summary: 'Début du développement d\'une bibliothèque de recherche en collaboration avec Institut Pasteur pour permettre aux biologistes d\'effectuer un appariement de formes sous contraintes mécaniques sur des maillages.', 
       body: '' 
     },
     { 
       id: 'up-pasteur', 
-      title: 'Collaboration avec l\'Institut Pasteur', 
+      title: 'Collaboration avec Institut Pasteur', 
       date: '2025-09', 
-      summary: 'Suite à un stage de recherche de trois mois en présentiel à l’Institut Pasteur, poursuite du travail en collaboration scientifique en vue d’une publication sur l’analyse géométrique de la morphologie membranaire.', 
+      summary: 'Suite à un stage de recherche de trois mois en présentiel à Institut Pasteur, poursuite du travail en collaboration scientifique en vue d\'une publication sur l\'analyse géométrique de la morphologie membranaire.', 
       body: '' 
     }
   ]
@@ -231,7 +265,7 @@ export const talks: Record<string, ContentEntry[]> = {
       title: 'not-MIWAE and a supervised MNAR extension',
       org: 'ENS Paris-Saclay, Atrium',
       location: 'Gif-sur-Yvette, France',
-      date: '2024-12-18',
+      date: '2025-12-18',
       summary: 'Poster presentation on variational methods for missing-not-at-random data imputation.',
       body: '',
       links: [{ label: 'poster', url: '/papers/poster-notmiwae.pdf' }],
@@ -244,7 +278,7 @@ export const talks: Record<string, ContentEntry[]> = {
       title: 'not-MIWAE et extension MNAR supervisée',
       org: 'ENS Paris-Saclay, Atrium',
       location: 'Gif-sur-Yvette, France',
-      date: '2024-12-18',
+      date: '2025-12-18',
       summary: 'Présentation poster sur méthodes variationnelles pour imputation de données manquantes non aléatoires.',
       body: '',
       links: [{ label: 'poster', url: '/papers/poster-notmiwae.pdf' }],
