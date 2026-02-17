@@ -1,0 +1,27 @@
+
+[
+  {
+    "id": "maazizi-2025-morphodynamic",
+    "title": "Morphodynamic study of hematopoietic stem cell emergence using shape matching methods with mechanical constraints",
+    "authors": ["G. Nardi", "Amine MAAZIZI", "TBD"],
+    "venue": "TBD",
+    "year": 2026,
+    "type": "preprint",
+    "status": "drafting",
+    "abstract": "We developed geometry-aware methods for analyzing biological membrane morphology during hematopoietic stem cell emergence. Our approach integrates Helfrich energy constraints into shape-matching frameworks to quantify curvature dynamics in developmental processes.",
+    "tags": ["computational-biology", "geometric-deep-learning", "shape-analysis", "differential-geometry"],
+    "bibtex": "@article{maazizi2025morphodynamic,\n  title={Morphodynamic study of hematopoietic stem cell emergence using shape matching methods with mechanical constraints},\n  author={Nardi, A. and MAAZIZI, Amine and others},\n  journal={In preparation},\n  year={2025}\n}"
+  },
+  {
+    "id": "maazizi-2024-miwae",
+    "title": "not-MIWAE and a supervised MNAR extension",
+    "authors": ["Amine MAAZIZI", "A. Gassem", "E. Melzani"],
+    "venue": "TBD",
+    "year": 2025,
+    "type": "preprint",
+    "status": "in-preparation",
+    "abstract": "We extend the MIWAE framework for missing-not-at-random data imputation by incorporating supervised learning for censored observations. Our method leverages variational inference to handle complex missingness patterns in high-dimensional datasets.",
+    "tags": ["missing-data", "variational-inference", "deep-learning", "probabilistic-modeling"],
+    "bibtex": "@article{maazizi2024miwae,\n  title={not-MIWAE and a supervised MNAR extension},\n  author={MAAZIZI, Amine and others},\n  journal={In preparation},\n  year={2024}\n}"
+  }
+]

@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Amine Maazizi</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+      }
+    </script>
+    <script>
+      // Initialize theme before rendering to avoid flash
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      
+      // Default to light mode unless explicitly set to dark or system prefers dark
+      if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+        // If no saved theme, default to light
+        if (!savedTheme) {
+          localStorage.setItem('theme', 'light');
+        }
+      }
+    </script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap');
+      
+      :root {
+        --font-serif: 'Libre+Baskerville', serif;
+        --font-mono: 'JetBrains+Mono', monospace;
+        --font-sans: 'Inter', sans-serif;
+      }
+
+      body {
+        font-family: var(--font-sans);
+      }
+
+      .prose-serif {
+        font-family: var(--font-serif);
+        line-height: 1.7;
+      }
+
+      .mono {
+        font-family: var(--font-mono);
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react-router-dom": "https://esm.sh/react-router-dom@^7.13.0",
+    "@/": "./"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-white text-[#111111] dark:bg-[#0B0F14] dark:text-[#E6EDF3] transition-colors duration-200">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
