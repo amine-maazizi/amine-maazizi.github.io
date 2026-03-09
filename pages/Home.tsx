@@ -33,8 +33,8 @@ const Home: React.FC<{ locale: Locale }> = ({ locale }) => {
             </p>
             <p className="mt-4">
                {locale === 'en'
-                ? "Currently, I am collaborating with the Institut Pasteur on geometry-aware models for cell membrane analysis. In April 2026, I will join the AIMM Lab at EPFL as a research intern."
-                : "Je collabore actuellement avec l'Institut Pasteur sur des modèles de mise en correspondance de formes pour l'analyse des membranes biologiques. Je rejoindrai l'AIMM Lab à l'EPFL en avril 2026."}
+                ? "In April 2026, I will join the AIMM Lab at EPFL as a research intern, working on deep learning models for panoptic cell segmentation in spatial proteomics imaging."
+                : "En avril 2026, je rejoindrai le AIMM Lab à l'EPFL en tant que stagiaire de recherche, travaillant sur des modèles d'apprentissage profond pour la segmentation panoptique de cellules en imagerie de protéomique spatiale."}
             </p>
           </div>
         </div>

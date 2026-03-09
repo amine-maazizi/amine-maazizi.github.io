@@ -34,12 +34,12 @@ const Publications: React.FC<{ locale: Locale }> = ({ locale }) => {
       <SectionHeader title={strings.nav.publications} subtitle={locale === 'en' ? "Peer-reviewed papers and preprints." : "Articles revus par les pairs et prépublications."} />
 
       <div className="flex flex-col md:flex-row gap-4 justify-between items-center sticky top-16 z-40 bg-white/90 dark:bg-[#0B0F14]/90 py-4 border-b border-[#E5E7EB] dark:border-[#27313A] backdrop-blur">
-        <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0 w-full md:w-auto">
-          {['all', 'journal', 'conference', 'preprint'].map(type => (
+        <div className="flex flex-wrap gap-1.5 w-full md:w-auto">
+          {['all', 'journal', 'conference', 'preprint', 'report'].map(type => (
             <button
               key={type}
               onClick={() => setFilter(type)}
-              className={`px-3 py-1 rounded text-xs font-bold uppercase tracking-wider transition-colors ${filter === type ? 'bg-[#1F4E79] text-white' : 'bg-[#E5E7EB] dark:bg-[#27313A] text-[#444444] hover:bg-[#D1D5DB]'}`}
+              className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide transition-colors whitespace-nowrap ${filter === type ? 'bg-[#1F4E79] text-white' : 'bg-[#E5E7EB] dark:bg-[#27313A] text-[#444444] hover:bg-[#D1D5DB]'}`}
             >
               {type === 'all' ? strings.ui.all : type}
             </button>

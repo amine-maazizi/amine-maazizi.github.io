@@ -23,5 +23,29 @@
     "abstract": "We extend the MIWAE framework for missing-not-at-random data imputation by incorporating supervised learning for censored observations. Our method leverages variational inference to handle complex missingness patterns in high-dimensional datasets.",
     "tags": ["missing-data", "variational-inference", "deep-learning", "probabilistic-modeling"],
     "bibtex": "@article{maazizi2024miwae,\n  title={not-MIWAE and a supervised MNAR extension},\n  author={MAAZIZI, Amine and others},\n  journal={In preparation},\n  year={2024}\n}"
+  },
+  {
+    "id": "maazizi-2025-wasserstein",
+    "title": "Wasserstein-based methods for optimal transport in high-dimensional spaces",
+    "authors": ["Amine MAAZIZI", "E. Melzani", "S. OUKACI"],
+    "venue": "Technical Report",
+    "year": 2025,
+    "type": "report",
+    "pdfUrl": "/papers/wasserstein_unpublished.pdf",
+    "abstract": "This technical report explores Wasserstein-based methods for optimal transport problems in high-dimensional spaces, with applications to machine learning and computational geometry.",
+    "tags": ["optimal-transport", "wasserstein-distance", "machine-learning", "computational-geometry"],
+    "bibtex": "@techreport{maazizi2025wasserstein,\n  title={Wasserstein-based methods for optimal transport in high-dimensional spaces},\n  author={MAAZIZI, Amine and Melzani, E. and OUKACI, S.},\n  institution={Technical Report},\n  year={2025},\n  month={December}\n}"
+  },
+  {
+    "id": "dupuis-2025-clairvoyance",
+    "title": "Clairvoyance: An assistive vision system for smart glasses",
+    "authors": ["G. Dupuis", "Amine MAAZIZI", "et al."],
+    "venue": "Technical Report",
+    "year": 2025,
+    "type": "report",
+    "pdfUrl": "/papers/clairvoyance_unpublished.pdf",
+    "abstract": "We present Clairvoyance, an assistive computer vision pipeline for wearable smart glasses combining depth estimation, object detection and classification, and OCR for real-time scene understanding. The system implements a two-stage agentic workflow with custom-trained language models for planned scenarios and LLM-based fallback for unplanned requests.",
+    "tags": ["computer-vision", "edge-ai", "accessibility", "embedded-systems", "multimodal-ai"],
+    "bibtex": "@techreport{dupuis2025clairvoyance,\n  title={Clairvoyance: An assistive vision system for smart glasses},\n  author={Dupuis, G. and MAAZIZI, Amine and others},\n  institution={Technical Report},\n  year={2025},\n  month={June}\n}"
   }
 ]

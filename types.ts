@@ -6,7 +6,8 @@ export enum PublicationType {
   CONFERENCE = 'conference',
   WORKSHOP = 'workshop',
   PREPRINT = 'preprint',
-  THESIS = 'thesis'
+  THESIS = 'thesis',
+  REPORT = 'report'
 }
 
 export interface Publication {

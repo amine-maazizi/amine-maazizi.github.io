@@ -217,13 +217,6 @@ export const updates: Record<string, ContentEntry[]> = {
       date: '2025-10', 
       summary: 'Started development of a collaborative research library with Institut Pasteur to provide biologists an accessible tool for constrained mesh shape matching.', 
       body: '' 
-    },
-    { 
-      id: 'up-pasteur', 
-      title: 'Institut Pasteur Collaboration', 
-      date: '2025-09', 
-      summary: 'Completed a 3-month on-site research internship at Institut Pasteur and continued as a research collaborator toward a joint publication on geometry-aware membrane shape analysis.', 
-      body: '' 
     }
   ],
   fr: [
@@ -246,13 +239,6 @@ export const updates: Record<string, ContentEntry[]> = {
       title: 'Développement d\'un logiciel de mise en correspondance de formes', 
       date: '2025-10', 
       summary: 'Début du développement d\'une bibliothèque de recherche en collaboration avec Institut Pasteur pour permettre aux biologistes d\'effectuer un appariement de formes sous contraintes mécaniques sur des maillages.', 
-      body: '' 
-    },
-    { 
-      id: 'up-pasteur', 
-      title: 'Collaboration avec Institut Pasteur', 
-      date: '2025-09', 
-      summary: 'Suite à un stage de recherche de trois mois en présentiel à Institut Pasteur, poursuite du travail en collaboration scientifique en vue d\'une publication sur l\'analyse géométrique de la morphologie membranaire.', 
       body: '' 
     }
   ]
