@@ -22,9 +22,9 @@ export const researchExperience: Record<string, ContentEntry[]> = {
       org: 'Institut Pasteur, Biomedical Image Analysis Unit',
       location: 'Paris, France',
       date: '2025-06',
-      endDate: 'Present',
+      endDate: '2025-12',
       summary:
-        'Conducted research on geometry-aware shape matching models for biological membrane morphology using curvature-based (Helfrich energy) constraints. Developed an optimized computational simulation framework and performed large-scale experiments demonstrating curvature-induced forces as drivers of membrane morphogenesis. The work began as an on-site research internship and continues as an ongoing research collaboration.',
+        'Conducted research on geometry-aware shape matching models for biological membrane morphology using curvature-based (Helfrich energy) constraints. Developed an optimized computational simulation framework and performed large-scale experiments demonstrating curvature-induced forces as drivers of membrane morphogenesis.',
       body: '',
       thumbnail: '/images/pasteur.jpg',
       tags: ['geometric-deep-learning', 'shape-matching', 'computational-biology', 'differential-geometry']
@@ -63,9 +63,9 @@ export const researchExperience: Record<string, ContentEntry[]> = {
       org: "Institut Pasteur, Unité d’analyse d’images biomédicales",
       location: 'Paris, France',
       date: '2025-06',
-      endDate: 'Présent',
+      endDate: '2025-12',
       summary:
-        'Recherche sur des modèles de mise en correspondance de formes sensibles à la géométrie pour la morphologie des membranes biologiques, avec des contraintes de courbure (énergie de Helfrich). Développement d’un cadre de simulation optimisé et réalisation d’expériences à grande échelle montrant que des forces induites par la courbure constituent un mécanisme clé de la morphogenèse membranaire. Le travail a débuté par un stage de recherche en présentiel et se poursuit sous la forme d’une collaboration de recherche continue.',
+        "Recherche sur des modèles de mise en correspondance de formes sensibles à la géométrie pour la morphologie des membranes biologiques, avec des contraintes de courbure (énergie de Helfrich). Développement d'un cadre de simulation optimisé et réalisation d'expériences à grande échelle montrant que des forces induites par la courbure constituent un mécanisme clé de la morphogenèse membranaire.",
       body: '',
       thumbnail: '/images/pasteur.jpg',
       tags: ['apprentissage-géométrique-profond', 'alignement-de-formes', 'biologie-computationnelle', 'géométrie-différentielle']

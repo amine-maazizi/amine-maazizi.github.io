@@ -65,11 +65,11 @@ const Home: React.FC<{ locale: Locale }> = ({ locale }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
           <div>
             <h3 className="font-bold mb-1">Morphodynamics & Curvature</h3>
-            <p className="text-[#444444] dark:text-[#9CA3AF] leading-relaxed italic">Analyzing hematopoietic stem cell emergence via Helfrich energy constraints (Institut Pasteur).</p>
+            <p className="text-[#444444] dark:text-[#9CA3AF] leading-relaxed italic">Finalizing research on hematopoietic stem cell emergence via Helfrich energy constraints.</p>
           </div>
           <div>
             <h3 className="font-bold mb-1">Panoptic Segmentation</h3>
-            <p className="text-[#444444] dark:text-[#9CA3AF] leading-relaxed italic">Foundation models for spatial proteomics and multiplex imaging (EPFL Prep).</p>
+            <p className="text-[#444444] dark:text-[#9CA3AF] leading-relaxed italic">Foundation models for spatial proteomics and multiplex imaging.</p>
           </div>
         </div>
       </section>
