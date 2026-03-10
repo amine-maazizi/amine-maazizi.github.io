@@ -40,7 +40,8 @@ export const researchExperience: Record<string, ContentEntry[]> = {
         'Conducted a structured literature survey on geometric deep learning methods for 3D CG model generation from multimodal inputs, with applications to VR. Reviewed multimodal pipelines for virtual reality content creation and analyzed the role of neural implicit representations in computer graphics.',
       body: '',
       thumbnail: '/images/naist.png',
-      tags: ['geometric-deep-learning', '3d-generation', 'virtual-reality', 'neural-implicit-representations']
+      tags: ['geometric-deep-learning', '3d-generation', 'virtual-reality', 'neural-implicit-representations'],
+      links: [{ label: 'survey', url: '/papers/naist_survey.pdf' }]
     }
   ],
   fr: [
@@ -81,7 +82,8 @@ export const researchExperience: Record<string, ContentEntry[]> = {
         'Réalisation d’une revue de littérature structurée sur des méthodes d’apprentissage géométrique profond pour la génération de modèles 3D (CG) à partir d’entrées multimodales, avec des applications à la RV. Analyse de pipelines multimodaux pour la création de contenu en réalité virtuelle et étude du rôle des représentations neurales implicites en infographie.',
       body: '',
       thumbnail: '/images/naist.png',
-      tags: ['apprentissage-géométrique-profond', 'génération-3d', 'réalité-virtuelle', 'représentations-neurales-implicites']
+      tags: ['apprentissage-géométrique-profond', 'génération-3d', 'réalité-virtuelle', 'représentations-neurales-implicites'],
+      links: [{ label: 'survey', url: '/papers/naist_survey.pdf' }]
     }
   ]
 };

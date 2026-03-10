@@ -63,7 +63,7 @@ const ListView: React.FC<ListViewProps> = ({ locale, title, items }) => {
               )}
 
               {item.tags && (
-                <div className="flex gap-2 pt-2">
+                <div className="flex flex-wrap gap-2 pt-2">
                   {item.tags.map(t => <TagPill key={t}>{t}</TagPill>)}
                 </div>
               )}

@@ -32,7 +32,7 @@ export const Thumbnail: React.FC<{ src?: string; alt: string; icon?: string }> =
 };
 
 export const TagPill: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <span className="px-2 py-0.5 bg-[#E5E7EB] dark:bg-[#27313A] text-[10px] font-bold uppercase tracking-widest text-[#444444] dark:text-[#9CA3AF] rounded">
+  <span className="px-2 py-0.5 bg-[#E5E7EB] dark:bg-[#27313A] text-[9px] font-bold uppercase tracking-wide text-[#444444] dark:text-[#9CA3AF] rounded whitespace-nowrap">
     {children}
   </span>
 );

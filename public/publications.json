@@ -16,10 +16,10 @@
     "id": "maazizi-2024-miwae",
     "title": "not-MIWAE and a supervised MNAR extension",
     "authors": ["Amine MAAZIZI", "A. Gassem", "E. Melzani"],
-    "venue": "TBD",
+    "venue": "Preprint",
     "year": 2025,
     "type": "preprint",
-    "status": "in-preparation",
+    "status": "under-review",
     "abstract": "We extend the MIWAE framework for missing-not-at-random data imputation by incorporating supervised learning for censored observations. Our method leverages variational inference to handle complex missingness patterns in high-dimensional datasets.",
     "tags": ["missing-data", "variational-inference", "deep-learning", "probabilistic-modeling"],
     "bibtex": "@article{maazizi2024miwae,\n  title={not-MIWAE and a supervised MNAR extension},\n  author={MAAZIZI, Amine and others},\n  journal={In preparation},\n  year={2024}\n}"
@@ -28,11 +28,11 @@
     "id": "maazizi-2025-wasserstein",
     "title": "Wasserstein-based methods for optimal transport in high-dimensional spaces",
     "authors": ["Amine MAAZIZI", "E. Melzani", "S. OUKACI"],
-    "venue": "Technical Report",
+    "venue": "Technical Report, MVA Geometric Data Analysis",
     "year": 2025,
     "type": "report",
     "pdfUrl": "/papers/wasserstein_unpublished.pdf",
-    "abstract": "This technical report explores Wasserstein-based methods for optimal transport problems in high-dimensional spaces, with applications to machine learning and computational geometry.",
+    "abstract": "This report reviews the 2011 paper by Rabin, Peyre, Delon, and Bernot on Wasserstein barycenters and texture mixing. We reproduce the texture synthesis experiments and provide a more efficient implementation to improve runtime and reproducibility.",
     "tags": ["optimal-transport", "wasserstein-distance", "machine-learning", "computational-geometry"],
     "bibtex": "@techreport{maazizi2025wasserstein,\n  title={Wasserstein-based methods for optimal transport in high-dimensional spaces},\n  author={MAAZIZI, Amine and Melzani, E. and OUKACI, S.},\n  institution={Technical Report},\n  year={2025},\n  month={December}\n}"
   },
@@ -40,12 +40,24 @@
     "id": "dupuis-2025-clairvoyance",
     "title": "Clairvoyance: An assistive vision system for smart glasses",
     "authors": ["G. Dupuis", "Amine MAAZIZI", "et al."],
-    "venue": "Technical Report",
+    "venue": "Technical Report, ENSTA Paris PIE",
     "year": 2025,
     "type": "report",
     "pdfUrl": "/papers/clairvoyance_unpublished.pdf",
     "abstract": "We present Clairvoyance, an assistive computer vision pipeline for wearable smart glasses combining depth estimation, object detection and classification, and OCR for real-time scene understanding. The system implements a two-stage agentic workflow with custom-trained language models for planned scenarios and LLM-based fallback for unplanned requests.",
     "tags": ["computer-vision", "edge-ai", "accessibility", "embedded-systems", "multimodal-ai"],
     "bibtex": "@techreport{dupuis2025clairvoyance,\n  title={Clairvoyance: An assistive vision system for smart glasses},\n  author={Dupuis, G. and MAAZIZI, Amine and others},\n  institution={Technical Report},\n  year={2025},\n  month={June}\n}"
+  },
+  {
+    "id": "maazizi-2024-naist-survey",
+    "title": "Multimodal 3D Generation: Coupling Geometric Inductive Bias with 2D Foundation Priors",
+    "authors": ["Amine MAAZIZI"],
+    "venue": "Technical Report, NAIST CaRE Lab",
+    "year": 2024,
+    "type": "report",
+    "pdfUrl": "/papers/naist_survey.pdf",
+    "abstract": "This survey compiles and structures the literature review conducted during my research collaboration initiation at NAIST Cybernetics and Reality Engineering Lab, under the supervision of Prof. Hideaki Uchiyama. In this review, I argue that the recent success of text- and image-conditioned 3D generation did not mainly come from scaling native 3D supervision, but from coupling geometric inductive bias with strong 2D foundation priors. Classical and early deep 3D methods were constrained by irregular geometry, partial observations, and limited 3D datasets.",
+    "tags": ["3d-generation", "geometric-deep-learning", "foundation-models", "neural-implicit-representations", "computer-graphics"],
+    "bibtex": "@techreport{maazizi2024naist,\n  title={Multimodal 3D Generation: Coupling Geometric Inductive Bias with 2D Foundation Priors},\n  author={MAAZIZI, Amine},\n  institution={NAIST, Cybernetics and Reality Engineering Lab},\n  year={2024},\n  month={December}\n}"
   }
 ]
