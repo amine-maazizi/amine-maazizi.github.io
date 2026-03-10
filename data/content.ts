@@ -37,7 +37,7 @@ export const researchExperience: Record<string, ContentEntry[]> = {
       date: '2024-10',
       endDate: '2024-12',
       summary:
-        'Conducted a structured literature survey on geometric deep learning methods for 3D CG model generation from multimodal inputs, with applications to VR. Reviewed multimodal pipelines for virtual reality content creation and analyzed the role of neural implicit representations in computer graphics.',
+        'Collaborative research initiation under Prof. Hideaki Uchiyama, where I learned to conduct structured literature reviews and collaborated with a master\'s student on an ongoing lab project. Conducted a comprehensive survey on text- and image-conditioned 3D generation methods, arguing that recent success stems from coupling geometric inductive biases with strong 2D foundation priors rather than scaling native 3D supervision.',
       body: '',
       thumbnail: '/images/naist.png',
       tags: ['geometric-deep-learning', '3d-generation', 'virtual-reality', 'neural-implicit-representations'],
@@ -79,7 +79,7 @@ export const researchExperience: Record<string, ContentEntry[]> = {
       date: '2024-10',
       endDate: '2024-12',
       summary:
-        'Réalisation d’une revue de littérature structurée sur des méthodes d’apprentissage géométrique profond pour la génération de modèles 3D (CG) à partir d’entrées multimodales, avec des applications à la RV. Analyse de pipelines multimodaux pour la création de contenu en réalité virtuelle et étude du rôle des représentations neurales implicites en infographie.',
+        'Initiation collaborative à la recherche sous la supervision du Prof. Hideaki Uchiyama, où j\'ai appris à mener des revues de littérature structurées et collaboré avec un étudiant en master sur un projet de laboratoire en cours. Réalisation d\'une revue complète sur les méthodes de génération 3D conditionnées par texte et images, démontrant que le succès récent provient du couplage de biais inductifs géométriques avec de forts priors de fondation 2D plutôt que de la mise à l\'échelle de la supervision 3D native.',
       body: '',
       thumbnail: '/images/naist.png',
       tags: ['apprentissage-géométrique-profond', 'génération-3d', 'réalité-virtuelle', 'représentations-neurales-implicites'],
