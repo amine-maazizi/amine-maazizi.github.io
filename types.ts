@@ -72,5 +72,7 @@ export interface I18nStrings {
     now: string;
     currentFocus: string;
     teaching: string;
+    showMore: string;
+    showLess: string;
   };
 }

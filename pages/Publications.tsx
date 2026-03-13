@@ -84,12 +84,6 @@ const Publications: React.FC<{ locale: Locale }> = ({ locale }) => {
                       {pub.status && <span className="ml-2 px-2 py-0.5 bg-[#E5E7EB] dark:bg-[#27313A] text-[#1F4E79] dark:text-[#4A90A4] rounded text-[10px] font-bold uppercase">{pub.status}</span>}
                     </p>
 
-                    {pub.abstract && (
-                      <p className="text-sm text-[#444444] dark:text-[#9CA3AF] leading-relaxed">
-                        {pub.abstract}
-                      </p>
-                    )}
-
                     <div className="flex flex-wrap items-center gap-4 pt-1">
                       {pub.doi && <LinkIcon href={`https://doi.org/${pub.doi}`} label="DOI" />}
                       {pub.pdfUrl && <LinkIcon href={pub.pdfUrl} label="PDF" />}

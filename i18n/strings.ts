@@ -25,7 +25,9 @@ export const en: I18nStrings = {
     search: 'Search papers...',
     now: 'Current',
     currentFocus: 'Research Focus',
-    teaching: 'Teaching'
+    teaching: 'Teaching',
+    showMore: 'Show more',
+    showLess: 'Show less'
   }
 };
 
@@ -53,6 +55,8 @@ export const fr: I18nStrings = {
     search: 'Rechercher...',
     now: 'Actuel',
     currentFocus: 'Axes de recherche',
-    teaching: 'Enseignement'
+    teaching: 'Enseignement',
+    showMore: 'Voir plus',
+    showLess: 'Voir moins'
   }
 };

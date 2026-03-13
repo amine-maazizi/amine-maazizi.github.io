@@ -3,6 +3,7 @@ import React from 'react';
 import { Locale, ContentEntry } from '../types';
 import { en, fr } from '../i18n/strings';
 import { SectionHeader, Thumbnail, TagPill, LinkIcon } from '../components/UI';
+import ExpandableText from '../components/ExpandableText';
 
 interface ListViewProps {
   locale: Locale;
@@ -36,9 +37,12 @@ const ListView: React.FC<ListViewProps> = ({ locale, title, items }) => {
                 </p>
               )}
 
-              <p className="text-[#444444] dark:text-[#9CA3AF] leading-relaxed text-sm">
-                {item.summary}
-              </p>
+              <ExpandableText
+                text={item.summary}
+                showMoreLabel={strings.ui.showMore}
+                showLessLabel={strings.ui.showLess}
+                className="text-[#444444] dark:text-[#9CA3AF] leading-relaxed text-sm"
+              />
 
               {item.ranking && (
                 <div className="pt-2">
