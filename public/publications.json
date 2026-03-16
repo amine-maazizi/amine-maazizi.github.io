@@ -20,6 +20,7 @@
     "year": 2025,
     "type": "preprint",
     "status": "under-review",
+    "pdfUrl": "/papers/notmiwae_pending_preprint.pdf",
     "abstract": "We extend the MIWAE framework for missing-not-at-random data imputation by incorporating supervised learning for censored observations. Our method leverages variational inference to handle complex missingness patterns in high-dimensional datasets.",
     "tags": ["missing-data", "variational-inference", "deep-learning", "probabilistic-modeling"],
     "bibtex": "@article{maazizi2024miwae,\n  title={not-MIWAE: Deep Generative Modelling with Missing Not at Random Data and a Supervised MNAR Extension (sup-not-MIWAE)},\n  author={MAAZIZI, Amine and others},\n  journal={In preparation},\n  year={2024}\n}"
