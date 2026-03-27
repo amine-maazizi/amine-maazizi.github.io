@@ -253,6 +253,14 @@ export const awards: Record<string, ContentEntry[]> = {
 
 export const updates: Record<string, ContentEntry[]> = { 
   en: [
+    {
+      id: 'up-bida-poster-2026',
+      title: 'Poster Presentation at CentraleSupélec',
+      date: '2026-03',
+      summary:
+        'Presented a poster presentation at the Bibliotheque space in Eiffel (CentraleSupélec).',
+      body: ''
+    },
     { 
       id: 'up-epfl', 
       title: 'Joining EPFL', 
@@ -276,6 +284,14 @@ export const updates: Record<string, ContentEntry[]> = {
     }
   ],
   fr: [
+    {
+      id: 'up-bida-poster-2026',
+      title: 'Présentation de poster a CentraleSupélec',
+      date: '2026-03',
+      summary:
+        'Présentation de poster a la Bibliotheque (espace Eiffel, CentraleSupélec).',
+      body: ''
+    },
     { 
       id: 'up-epfl', 
       title: 'Arrivée à l\'EPFL', 
@@ -303,6 +319,18 @@ export const updates: Record<string, ContentEntry[]> = {
 export const talks: Record<string, ContentEntry[]> = {
   en: [
     {
+      id: 'talk-bida-sr-poster',
+      title: 'Zero-shot MRI super-resolution reproduction',
+      org: 'Bibliotheque space, Eiffel, CentraleSupélec',
+      location: 'Gif-sur-Yvette, France',
+      date: '2026-03-26',
+      summary:
+        'Poster presentation of our reviewed reproduction of "Exploring the Feasibility of Zero-Shot Super-Resolution in Preclinical Imaging".',
+      body: '',
+      links: [{ label: 'poster', url: '/papers/poster-bida-sr.pdf' }],
+      thumbnail: '/images/automathon.png'
+    },
+    {
       id: 'talk-notmiwae-poster',
       title: 'not-MIWAE and a supervised MNAR extension',
       org: 'ENS Paris-Saclay, Atrium',
@@ -315,6 +343,18 @@ export const talks: Record<string, ContentEntry[]> = {
     }
   ],
   fr: [
+    {
+      id: 'talk-bida-sr-poster',
+      title: 'Présentation de poster : reproduction en super-resolution IRM zero-shot',
+      org: 'Bibliotheque, espace Eiffel, CentraleSupélec',
+      location: 'Gif-sur-Yvette, France',
+      date: '2026-03-26',
+      summary:
+        'Présentation de poster presentant notre reproduction revue de "Exploring the Feasibility of Zero-Shot Super-Resolution in Preclinical Imaging".',
+      body: '',
+      links: [{ label: 'poster', url: '/papers/poster-bida-sr.pdf' }],
+      thumbnail: '/images/automathon.png'
+    },
     {
       id: 'talk-notmiwae-poster',
       title: 'not-MIWAE et extension MNAR supervisée',
