@@ -5,16 +5,16 @@ export const researchExperience: Record<string, ContentEntry[]> = {
   en: [
     {
       id: 'exp-epfl',
-      title: 'Incoming Research Intern',
+      title: 'Research Intern',
       org: 'EPFL, Artificial Intelligence in Molecular Medicine (AIMM) Lab',
       location: 'Lausanne, Switzerland',
       date: '2026-04',
       endDate: '2026-09',
       summary:
-        'Incoming research internship focused on panoptic cell segmentation for multiplex spatial proteomics imaging. The work centers on adapting and evaluating deep learning and foundation-model-inspired architectures for biological imaging, with an emphasis on robust instance-level and class-level delineation in high-dimensional microscopy data.\n\nExperiments are conducted on the SwissAI Alps HPC cluster, with systematic training and benchmarking protocols designed in collaboration with computational and clinical partners. The objective is to build technically reliable segmentation pipelines that remain scientifically useful for downstream biological analysis.',
+        'Research internship focused on VIRTUES-SIM, a foundation-model-based framework for simulating spatiotemporal tissue responses to therapy from multiplex spatial proteomics data. The work centers on adapting and evaluating latent tissue-state transition models that use VirTues representations to predict post-treatment tissue states from destructive, unaligned pre- and post-treatment observations.\n\nExperiments are conducted on the SwissAI Alps HPC cluster, with systematic training, benchmarking, and evaluation pipelines for therapy-conditioned tissue simulation. The objective is to build technically reliable models that capture treatment-induced changes in tissue organization and remain useful for downstream biomarker and treatment-response analysis.',
       body: '',
       thumbnail: '/images/EPFL.png',
-      tags: ['deep-learning', 'cell-segmentation', 'spatial-proteomics', 'computer-vision']
+      tags: ['deep-learning', 'spatial-proteomics', 'foundation-models', 'tissue-simulation']
     },
     {
       id: 'exp-pasteur',
@@ -47,16 +47,16 @@ export const researchExperience: Record<string, ContentEntry[]> = {
   fr: [
     {
       id: 'exp-epfl',
-      title: 'Stagiaire de recherche (à venir)',
+      title: 'Stagiaire de recherche',
       org: 'EPFL, Artificial Intelligence in Molecular Medicine (AIMM) Lab',
       location: 'Lausanne, Suisse',
       date: '2026-04',
       endDate: '2026-09',
       summary:
-        'Stage de recherche (à venir) centré sur la segmentation panoptique de cellules en imagerie de protéomique spatiale multiplexée. Le travail porte sur l\'adaptation et l\'évaluation d\'architectures d\'apprentissage profond, inspirées des modèles de fondation, pour l\'imagerie biologique, avec un accent sur une délimitation robuste des cellules à la fois au niveau des instances et des classes dans des données microscopiques de grande dimension.\n\nLes expériences sont menées sur le cluster HPC SwissAI Alps, avec des protocoles d\'entraînement et de benchmarking systématiques, en collaboration avec des partenaires computationnels et cliniques. L\'objectif est de construire des pipelines de segmentation techniquement fiables et pertinents pour l\'analyse biologique en aval.',
+        'Stage de recherche consacré à VIRTUES-SIM, un cadre fondé sur des modèles de fondation pour simuler les réponses spatiotemporelles des tissus aux thérapies à partir de données de protéomique spatiale multiplexée. Le travail porte sur l’adaptation et l’évaluation de modèles de transition d’états tissulaires latents utilisant les représentations VirTues afin de prédire les états tissulaires post-traitement à partir d’observations pré- et post-traitement destructives et non alignées.\n\nLes expériences sont menées sur le cluster HPC SwissAI Alps, avec des pipelines systématiques d’entraînement, de benchmarking et d’évaluation pour la simulation tissulaire conditionnée par les thérapies. L’objectif est de construire des modèles techniquement fiables capables de capturer les changements induits par les traitements dans l’organisation tissulaire, tout en restant utiles pour l’analyse downstream des biomarqueurs et des réponses thérapeutiques.',
       body: '',
       thumbnail: '/images/EPFL.png',
-      tags: ['apprentissage-profond', 'segmentation-cellulaire', 'protéomique-spatiale', 'vision-par-ordinateur']
+      tags: ['deep-learning', 'protéomique-spatiale', 'modèles-de-fondation', 'simulation-tissulaire']
     },
     {
       id: 'exp-pasteur',
@@ -254,19 +254,19 @@ export const awards: Record<string, ContentEntry[]> = {
 export const updates: Record<string, ContentEntry[]> = { 
   en: [
     {
+      id: 'in-epfl',
+      title: 'Joined EPFL',
+      date: '2026-04',
+      summary: 'Started a research internship at the AIMM Lab, working on VIRTUES-SIM for therapy-conditioned tissue simulation.',
+      body: ''
+    },
+    {
       id: 'up-bida-poster-2026',
       title: 'Poster Presentation at CentraleSupélec',
       date: '2026-03',
       summary:
         'Presented a poster presentation at the Bibliotheque space in Eiffel (CentraleSupélec).',
       body: ''
-    },
-    { 
-      id: 'up-epfl', 
-      title: 'Joining EPFL', 
-      date: '2026-01', 
-      summary: 'Accepted for a research internship at the AIMM Lab starting April 2026.', 
-      body: '' 
     },
     { 
       id: 'up-poster', 
@@ -285,19 +285,19 @@ export const updates: Record<string, ContentEntry[]> = {
   ],
   fr: [
     {
+      id: 'in-epfl',
+      title: 'Arrivée à l’EPFL',
+      date: '2026-04',
+      summary: 'Début d’un stage de recherche au AIMM Lab, sur VIRTUES-SIM pour la simulation tissulaire conditionnée par les thérapies.',
+      body: ''
+    },
+    {
       id: 'up-bida-poster-2026',
       title: 'Présentation de poster a CentraleSupélec',
       date: '2026-03',
       summary:
         'Présentation de poster a la Bibliotheque (espace Eiffel, CentraleSupélec).',
       body: ''
-    },
-    { 
-      id: 'up-epfl', 
-      title: 'Arrivée à l\'EPFL', 
-      date: '2026-01', 
-      summary: 'Accepté pour un stage de recherche au AIMM Lab à partir d’avril 2026.', 
-      body: '' 
     },
     { 
       id: 'up-poster', 

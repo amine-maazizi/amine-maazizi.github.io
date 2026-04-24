@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Locale } from '../types';
 import { en, fr } from '../i18n/strings';
@@ -28,13 +27,13 @@ const Home: React.FC<{ locale: Locale }> = ({ locale }) => {
           <div className="prose-serif text-lg leading-relaxed text-[#444444] dark:text-[#9CA3AF] max-w-2xl">
             <p>
               {locale === 'en' 
-                ? "I am an engineer-researcher specializing in applied mathematics, computer science, and AI. My work focuses on geometric processing, representation learning, and computer vision with applications in biomedical imaging and computational biology."
-                : "Élève-ingénieur et chercheur spécialisé en mathématiques appliquées et intelligence artificielle. Mes travaux portent sur le traitement géométrique, l'apprentissage de représentations et la vision par ordinateur, avec des applications en imagerie biomédicale."}
+                ? "I am an engineer-researcher in applied mathematics, computer science, and AI. My work covers geometric processing, representation learning, and computer vision, with applications in biomedical imaging and computational biology."
+                : "Je suis élève-ingénieur et chercheur en mathématiques appliquées, informatique et intelligence artificielle. Mes travaux portent sur le traitement géométrique, l’apprentissage de représentations et la vision par ordinateur, avec des applications en imagerie biomédicale et en biologie computationnelle."}
             </p>
             <p className="mt-4">
                {locale === 'en'
-                ? "In April 2026, I will join the AIMM Lab at EPFL as a research intern, working on deep learning models for panoptic cell segmentation in spatial proteomics imaging."
-                : "En avril 2026, je rejoindrai le AIMM Lab à l'EPFL en tant que stagiaire de recherche, travaillant sur des modèles d'apprentissage profond pour la segmentation panoptique de cellules en imagerie de protéomique spatiale."}
+                ? "Since April 2026, I have been a research intern at the AIMM Lab at EPFL, working on VIRTUES-SIM for therapy-conditioned tissue-state simulation from multiplex spatial proteomics data."
+                : "Depuis avril 2026, je suis stagiaire de recherche au AIMM Lab à l’EPFL, où je travaille sur VIRTUES-SIM pour la simulation d’états tissulaires conditionnée par les thérapies à partir de données de protéomique spatiale multiplexée."}
             </p>
           </div>
         </div>
@@ -64,12 +63,24 @@ const Home: React.FC<{ locale: Locale }> = ({ locale }) => {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
           <div>
-            <h3 className="font-bold mb-1">Morphodynamics & Curvature</h3>
-            <p className="text-[#444444] dark:text-[#9CA3AF] leading-relaxed italic">Finalizing research on hematopoietic stem cell emergence via Helfrich energy constraints.</p>
+            <h3 className="font-bold mb-1">
+              {locale === 'en' ? 'Morphodynamics & Curvature' : 'Morphodynamique et courbure'}
+            </h3>
+            <p className="text-[#444444] dark:text-[#9CA3AF] leading-relaxed italic">
+              {locale === 'en'
+                ? 'Research on hematopoietic stem cell emergence using Helfrich energy constraints.'
+                : 'Recherche sur l’émergence des cellules souches hématopoïétiques à partir de contraintes d’énergie de Helfrich.'}
+            </p>
           </div>
           <div>
-            <h3 className="font-bold mb-1">Panoptic Segmentation</h3>
-            <p className="text-[#444444] dark:text-[#9CA3AF] leading-relaxed italic">Foundation models for spatial proteomics and multiplex imaging.</p>
+            <h3 className="font-bold mb-1">
+              {locale === 'en' ? 'Tissue Simulation & Spatial Proteomics' : 'Simulation tissulaire et protéomique spatiale'}
+            </h3>
+            <p className="text-[#444444] dark:text-[#9CA3AF] leading-relaxed italic">
+              {locale === 'en'
+                ? 'Foundation-model-based simulation of therapy-conditioned tissue-state transitions from multiplex spatial proteomics data.'
+                : 'Simulation de transitions d’états tissulaires conditionnées par les thérapies à partir de données de protéomique spatiale multiplexée.'}
+            </p>
           </div>
         </div>
       </section>

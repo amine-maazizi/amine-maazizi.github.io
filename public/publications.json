@@ -60,5 +60,17 @@
     "abstract": "This survey compiles and structures the literature review conducted during my research collaboration initiation at NAIST Cybernetics and Reality Engineering Lab, under the supervision of Prof. Hideaki Uchiyama. In this review, I argue that the recent success of text- and image-conditioned 3D generation did not mainly come from scaling native 3D supervision, but from coupling geometric inductive bias with strong 2D foundation priors. Classical and early deep 3D methods were constrained by irregular geometry, partial observations, and limited 3D datasets.",
     "tags": ["3d-generation", "geometric-deep-learning", "foundation-models", "neural-implicit-representations", "computer-graphics"],
     "bibtex": "@techreport{maazizi2024naist,\n  title={From Geometric Inductive Bias to 2D Generative Priors: A Structured Survey of Deep Learning for 3D Reconstruction from Text and Images},\n  author={MAAZIZI, Amine},\n  institution={NAIST, Cybernetics and Reality Engineering Lab},\n  year={2024},\n  month={December}\n}"
+  },
+  {
+  "id": "maazizi-2026-label-free-cbm-audio",
+  "title": "Adapting Label-Free Concept Bottleneck Models to Audio",
+  "authors": ["Amine MAAZIZI", "Adam Gassem"],
+  "venue": "Technical Report, MVA Mutlimodal XAI",
+  "year": 2026,
+  "type": "report",
+  "pdfUrl": "/papers/label_free_CBM_audio.pdf",
+  "abstract": "We adapt Label-Free Concept Bottleneck Models to audio classification by replacing the CLIP-based image-text similarity stage with CLAP-based audio-text similarity. The pipeline keeps the LF-CBM structure unchanged: an AST audio backbone produces features, CLAP defines concept supervision through a concept activation matrix, and a sparse classifier predicts labels from the learned bottleneck. We evaluate the method on ESC-50, UrbanSound8K, and CREMA-D to compare predictive performance before and after bottlenecking and analyze the effect of label-free concept constraints on accuracy.",
+  "tags": ["audio-classification", "concept-bottleneck-models", "interpretability", "foundation-models", "representation-learning"],
+  "bibtex": "@techreport{maazizi2026labelfreecbmaudio,\n  title={Label-Free Concept Bottleneck Models for Audio Classification},\n  author={MAAZIZI, Amine and Ousse, A. and others},\n  institution={Technical Report, MVA},\n  year={2026}\n}"
   }
 ]
