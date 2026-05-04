@@ -116,7 +116,7 @@
     "labelFr": "Projet de master",
     "featured": false,
     "archive": true,
-    "pdfUrl": "/Interactions_MVA_Gassem_Lambert_Maazizzi_Oukaci_Melzani.pdf",
+    "pdfUrl": "/papers/Interactions_MVA_Gassem_Lambert_Maazizzi_Oukaci_Melzani.pdf",
     "codeUrl": "https://github.com/Mayeul84/interactions_road_traffic",
     "abstract": "Course project exploring traffic congestion across microscopic simulation, reinforcement learning control, game-theoretic routing, and optimal-transport-inspired macroscopic modeling.",
     "abstractFr": "Projet de cours explorant la congestion routière à travers la simulation microscopique, le contrôle par apprentissage par renforcement, le routage game-théorique et une modélisation macroscopique inspirée du transport optimal.",
@@ -134,7 +134,7 @@
     "labelFr": "Rapport de cours",
     "featured": false,
     "archive": true,
-    "pdfUrl": "/IA321_project_2.pdf",
+    "pdfUrl": "/papers/IA321_project_2.pdf",
     "codeUrl": "https://github.com/amine-maazizi/diffusion-audio-deepfake-generation-detection",
     "datasetLinks": [
       { "label": "VC dataset", "url": "https://huggingface.co/datasets/amine-maazizi/vc-detection-10k" },
