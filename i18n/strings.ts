@@ -1,11 +1,10 @@
-
 import { I18nStrings } from '../types';
 
 export const en: I18nStrings = {
   nav: {
     home: 'Overview',
     research: 'Research',
-    publications: 'Publications',
+    publications: 'Papers',
     experience: 'Experience',
     projects: 'Projects',
     awards: 'Awards',
@@ -21,10 +20,10 @@ export const en: I18nStrings = {
     abstract: 'Abstract',
     links: 'Resources',
     filter: 'Filter by type',
-    all: 'All Publications',
-    search: 'Search papers...',
+    all: 'All items',
+    search: 'Search...',
     now: 'Current',
-    currentFocus: 'Research Focus',
+    currentFocus: 'Current Projects',
     teaching: 'Teaching',
     showMore: 'Show more',
     showLess: 'Show less'
@@ -35,7 +34,7 @@ export const fr: I18nStrings = {
   nav: {
     home: 'Aperçu',
     research: 'Recherche',
-    publications: 'Publications',
+    publications: 'Travaux',
     experience: 'Expérience',
     projects: 'Projets',
     awards: 'Distinctions',
@@ -51,10 +50,10 @@ export const fr: I18nStrings = {
     abstract: 'Résumé',
     links: 'Ressources',
     filter: 'Filtrer par type',
-    all: 'Toutes les publications',
+    all: 'Tous les éléments',
     search: 'Rechercher...',
     now: 'Actuel',
-    currentFocus: 'Axes de recherche',
+    currentFocus: 'Projets actuels',
     teaching: 'Enseignement',
     showMore: 'Voir plus',
     showLess: 'Voir moins'

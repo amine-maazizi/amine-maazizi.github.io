@@ -1,125 +1,168 @@
-
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Locale, Publication } from '../types';
 import { en, fr } from '../i18n/strings';
 import { SectionHeader, TagPill, LinkIcon } from '../components/UI';
 
+type PaperTab = 'all' | 'conference' | 'journal' | 'preprint' | 'archive';
+
+const tabs: PaperTab[] = ['all', 'conference', 'journal', 'preprint', 'archive'];
+
+const tabLabels: Record<Locale, Record<PaperTab, string>> = {
+  en: {
+    all: 'All',
+    conference: 'Conference',
+    journal: 'Journal',
+    preprint: 'Preprint',
+    archive: 'Archive',
+  },
+  fr: {
+    all: 'Tous',
+    conference: 'Conférence',
+    journal: 'Revue',
+    preprint: 'Prépublication',
+    archive: 'Archive',
+  },
+};
+
+const AuthorList: React.FC<{ authors: string[] }> = ({ authors }) => (
+  <div className="flex flex-wrap gap-x-2 gap-y-1 text-sm font-medium text-[#444444] dark:text-[#9CA3AF]">
+    {authors.map((author, idx) => (
+      <span key={`${author}-${idx}`} className={author === 'A. Maazizi' ? 'font-bold underline decoration-[#1F4E79]' : ''}>
+        {author}{idx < authors.length - 1 ? ',' : ''}
+      </span>
+    ))}
+  </div>
+);
+
+const ResourceLinks: React.FC<{ item: Publication }> = ({ item }) => (
+  <div className="flex flex-wrap items-center gap-4 pt-1">
+    {item.pdfUrl && <LinkIcon href={item.pdfUrl} label="PDF" />}
+    {item.codeUrl && <LinkIcon href={item.codeUrl} label="Code" />}
+    {item.datasetLinks?.map((dataset) => (
+      <LinkIcon key={dataset.url} href={dataset.url} label={dataset.label} />
+    ))}
+  </div>
+);
+
+const ResearchCard: React.FC<{ item: Publication; locale: Locale }> = ({ item, locale }) => (
+  <article className="group relative">
+    <div className="flex flex-col gap-3">
+      <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2">
+        <h3 className="text-xl font-bold group-hover:text-[#1F4E79] dark:group-hover:text-[#7FB3C8] transition-colors leading-snug">
+          {item.title}
+        </h3>
+        <span className="text-xs font-bold mono text-[#9CA3AF] dark:text-[#444444]">{item.year}</span>
+      </div>
+      <AuthorList authors={item.authors} />
+      <p className="text-xs italic text-[#9CA3AF] dark:text-[#444444] font-serif">
+        {locale === 'fr' ? item.labelFr : item.label}
+        {item.status && <span className="ml-2 not-italic mono uppercase">{item.status}</span>}
+      </p>
+      <p className="text-sm leading-relaxed text-[#444444] dark:text-[#9CA3AF]">
+        {locale === 'fr' ? item.abstractFr : item.abstract}
+      </p>
+      <ResourceLinks item={item} />
+      <div className="flex flex-wrap gap-2">
+        {item.tags.map((tag) => <TagPill key={tag}>{tag}</TagPill>)}
+      </div>
+    </div>
+  </article>
+);
+
+const ArchiveCard: React.FC<{ item: Publication; locale: Locale }> = ({ item, locale }) => (
+  <article className="rounded-lg border border-[#E5E7EB] dark:border-[#27313A] p-4">
+    <div className="flex flex-col gap-2.5">
+      <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2">
+        <div>
+          <h3 className="text-base font-bold leading-snug text-[#111111] dark:text-[#E6EDF3]">
+            {item.title}
+          </h3>
+          <p className="text-[11px] font-bold mono uppercase tracking-wider text-[#1F4E79] dark:text-[#4A90A4] mt-1">
+            {locale === 'fr' ? item.labelFr : item.label}
+          </p>
+        </div>
+        <span className="text-xs font-bold mono text-[#9CA3AF] dark:text-[#444444]">{item.year}</span>
+      </div>
+      <AuthorList authors={item.authors} />
+      <p className="text-sm leading-relaxed text-[#444444] dark:text-[#9CA3AF]">
+        {locale === 'fr' ? item.abstractFr : item.abstract}
+      </p>
+      <ResourceLinks item={item} />
+    </div>
+  </article>
+);
+
 const Publications: React.FC<{ locale: Locale }> = ({ locale }) => {
   const strings = locale === 'fr' ? fr : en;
-  const [filter, setFilter] = useState<string>('all');
-  const [search, setSearch] = useState('');
-  const [publications, setPublications] = useState<Publication[]>([]);
-  const [activeCite, setActiveCite] = useState<string | null>(null);
+  const [items, setItems] = useState<Publication[]>([]);
+  const [activeTab, setActiveTab] = useState<PaperTab>('all');
 
-  // Use fetch for JSON data to ensure compatibility with standard browser ESM 
-  // which often restricts JSON imports without specific assertions.
   useEffect(() => {
     fetch('/publications.json')
-      .then(res => res.json())
-      .then(data => setPublications(data))
-      .catch(err => console.error("Failed to load publications:", err));
+      .then((res) => res.json())
+      .then((data) => setItems(data))
+      .catch((err) => console.error('Failed to load papers:', err));
   }, []);
 
-  const filteredPubs = useMemo(() => {
-    return publications.filter(pub => {
-      const matchesFilter = filter === 'all' || pub.type === filter;
-      const matchesSearch = pub.title.toLowerCase().includes(search.toLowerCase()) ||
-                          pub.authors.some(a => a.toLowerCase().includes(search.toLowerCase()));
-      return matchesFilter && matchesSearch;
-    }).sort((a, b) => b.year - a.year);
-  }, [filter, search, publications]);
+  const visibleItems = useMemo(() => {
+    const sorted = [...items].sort((a, b) => b.year - a.year || a.title.localeCompare(b.title));
+
+    if (activeTab === 'archive') {
+      return sorted.filter((item) => item.archive);
+    }
+
+    const nonArchive = sorted.filter((item) => !item.archive);
+
+    if (activeTab === 'all') {
+      return nonArchive;
+    }
+
+    return nonArchive.filter((item) => item.type === activeTab);
+  }, [activeTab, items]);
 
   return (
-    <div className="space-y-12">
-      <SectionHeader title={strings.nav.publications} subtitle={locale === 'en' ? "Peer-reviewed papers and preprints." : "Articles revus par les pairs et prépublications."} />
+    <div className="space-y-10">
+      <SectionHeader
+        title={strings.nav.publications}
+        subtitle={locale === 'fr' ? 'Recherche sélectionnée et rapports archivés.' : 'Selected research and archived reports.'}
+      />
 
-      <div className="flex flex-col md:flex-row gap-4 justify-between items-center sticky top-16 z-40 bg-white/90 dark:bg-[#0B0F14]/90 py-4 border-b border-[#E5E7EB] dark:border-[#27313A] backdrop-blur">
-        <div className="flex flex-wrap gap-1.5 w-full md:w-auto">
-          {['all', 'journal', 'conference', 'preprint', 'report'].map(type => (
-            <button
-              key={type}
-              onClick={() => setFilter(type)}
-              className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide transition-colors whitespace-nowrap ${filter === type ? 'bg-[#1F4E79] text-white' : 'bg-[#E5E7EB] dark:bg-[#27313A] text-[#444444] hover:bg-[#D1D5DB]'}`}
-            >
-              {type === 'all' ? strings.ui.all : type}
-            </button>
-          ))}
-        </div>
-        <div className="relative w-full md:w-64">
-          <input 
-            type="text" 
-            placeholder={strings.ui.search} 
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-8 pr-4 py-2 bg-[#E5E7EB] dark:bg-[#27313A] border border-[#E5E7EB] dark:border-[#27313A] rounded-lg text-xs focus:ring-2 focus:ring-[#1F4E79] outline-none transition-all"
-          />
-          <svg className="w-4 h-4 absolute left-2.5 top-2.5 text-[#9CA3AF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-        </div>
-      </div>
-
-      <div className="space-y-12">
-        {Array.from(new Set(filteredPubs.map(p => p.year))).sort((a: number, b: number) => b - a).map(year => (
-          <section key={year}>
-            <h2 className="text-2xl font-serif italic text-[#9CA3AF] dark:text-[#444444] mb-6 border-b border-[#E5E7EB] dark:border-[#27313A] pb-2">{year}</h2>
-            <div className="space-y-10">
-              {filteredPubs.filter(p => p.year === year).map(pub => (
-                <article key={pub.id} className="group relative">
-                  <div className="flex flex-col gap-3">
-                    <div className="flex items-start gap-4 justify-between">
-                      <h3 className="text-lg font-bold group-hover:text-[#1F4E79] dark:group-hover:text-[#7FB3C8] transition-colors leading-snug">
-                        {pub.title}
-                      </h3>
-                    </div>
-                    
-                    <div className="flex flex-wrap gap-x-2 gap-y-1 text-sm font-medium text-[#444444] dark:text-[#9CA3AF]">
-                      {pub.authors.map((author, idx) => (
-                        <span key={idx} className={author.includes("Amine MAAZIZI") ? "font-bold underline decoration-[#1F4E79]" : ""}>
-                          {author}{idx < pub.authors.length - 1 ? ',' : ''}
-                        </span>
-                      ))}
-                    </div>
-
-                    <p className="text-xs italic text-[#9CA3AF] dark:text-[#444444] font-serif">
-                      {pub.venue}
-                      {pub.status && <span className="ml-2 px-2 py-0.5 bg-[#E5E7EB] dark:bg-[#27313A] text-[#1F4E79] dark:text-[#4A90A4] rounded text-[10px] font-bold uppercase">{pub.status}</span>}
-                    </p>
-
-                    <div className="flex flex-wrap items-center gap-4 pt-1">
-                      {pub.doi && <LinkIcon href={`https://doi.org/${pub.doi}`} label="DOI" />}
-                      {pub.pdfUrl && <LinkIcon href={pub.pdfUrl} label="PDF" />}
-                      {pub.arxivId && <LinkIcon href={`https://arxiv.org/abs/${pub.arxivId}`} label="ArXiv" />}
-                      {pub.codeUrl && <LinkIcon href={pub.codeUrl} label="Code" />}
-                      <button 
-                        onClick={() => setActiveCite(activeCite === pub.id ? null : pub.id)}
-                        className="text-xs font-bold uppercase tracking-wider text-[#9CA3AF] hover:text-[#111111] dark:hover:text-[#E6EDF3] flex items-center gap-1"
-                      >
-                        <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" /></svg>
-                        {strings.ui.cite}
-                      </button>
-                    </div>
-
-                    {activeCite === pub.id && (
-                      <div className="mt-4 p-4 bg-[#E5E7EB] dark:bg-[#27313A] border border-[#E5E7EB] dark:border-[#27313A] rounded font-mono text-[10px] leading-relaxed relative animate-in fade-in slide-in-from-top-2">
-                        <pre className="whitespace-pre-wrap">{pub.bibtex}</pre>
-                        <button 
-                            onClick={() => setActiveCite(null)}
-                            className="absolute top-2 right-2 text-[#9CA3AF] hover:text-[#444444]"
-                        >
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
-                        </button>
-                      </div>
-                    )}
-
-                    <div className="flex gap-2">
-                      {pub.tags.map(tag => <TagPill key={tag}>{tag}</TagPill>)}
-                    </div>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </section>
+      <div className="flex flex-wrap gap-1.5 border-b border-[#E5E7EB] dark:border-[#27313A] pb-3">
+        {tabs.map((tab) => (
+          <button
+            key={tab}
+            type="button"
+            onClick={() => setActiveTab(tab)}
+            className={`px-2.5 py-1 rounded text-[10px] font-bold uppercase tracking-wide transition-colors whitespace-nowrap ${
+              activeTab === tab
+                ? 'bg-[#1F4E79] text-white'
+                : 'bg-[#E5E7EB] dark:bg-[#27313A] text-[#444444] dark:text-[#9CA3AF] hover:bg-[#D1D5DB] dark:hover:bg-[#33404B]'
+            }`}
+          >
+            {tabLabels[locale][tab]}
+          </button>
         ))}
       </div>
+
+      <section className={activeTab === 'archive' ? 'space-y-4' : 'space-y-8'}>
+        <h2 className="text-sm font-bold mono uppercase tracking-widest text-[#9CA3AF] dark:text-[#444444] border-b border-[#E5E7EB] dark:border-[#27313A] pb-2">
+          {tabLabels[locale][activeTab]}
+        </h2>
+
+        {visibleItems.length === 0 ? (
+          <p className="text-sm text-[#9CA3AF] dark:text-[#444444] italic">
+            {locale === 'fr' ? 'Aucun élément pour le moment.' : 'No items yet.'}
+          </p>
+        ) : (
+          <div className={activeTab === 'archive' ? 'space-y-4' : 'space-y-8'}>
+            {visibleItems.map((item) => (
+              activeTab === 'archive'
+                ? <ArchiveCard key={item.id} item={item} locale={locale} />
+                : <ResearchCard key={item.id} item={item} locale={locale} />
+            ))}
+          </div>
+        )}
+      </section>
     </div>
   );
 };

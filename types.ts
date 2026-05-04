@@ -2,6 +2,7 @@
 export type Locale = 'en' | 'fr';
 
 export enum PublicationType {
+  SELECTED = 'selected',
   JOURNAL = 'journal',
   CONFERENCE = 'conference',
   WORKSHOP = 'workshop',
@@ -17,13 +18,19 @@ export interface Publication {
   venue: string;
   year: number;
   type: PublicationType;
+  label?: string;
+  labelFr?: string;
+  featured?: boolean;
+  archive?: boolean;
   status?: string;
   abstract?: string;
+  abstractFr?: string;
   doi?: string;
   pdfUrl?: string;
   arxivId?: string;
   codeUrl?: string;
   datasetUrl?: string;
+  datasetLinks?: { label: string; url: string }[];
   slidesUrl?: string;
   bibtex?: string;
   tags: string[];
@@ -34,6 +41,7 @@ export interface ContentEntry {
   title: string;
   date?: string;
   endDate?: string;
+  teaser?: string;
   summary: string;
   body: string;
   tags?: string[];

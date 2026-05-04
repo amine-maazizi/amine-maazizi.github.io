@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Locale, ContentEntry } from '../types';
 import { en, fr } from '../i18n/strings';
@@ -26,14 +25,16 @@ const ListView: React.FC<ListViewProps> = ({ locale, title, items }) => {
                 <h3 className="text-xl font-bold text-[#111111] dark:text-[#E6EDF3] group-hover:text-[#1F4E79] transition-colors">
                   {item.title}
                 </h3>
-                <span className="text-xs font-bold text-[#9CA3AF] dark:text-[#444444] mono uppercase">
-                  {item.date} {item.endDate ? `— ${item.endDate}` : ''}
-                </span>
+                {(item.date || item.endDate) && (
+                  <span className="text-xs font-bold text-[#9CA3AF] dark:text-[#444444] mono uppercase">
+                    {item.date} {item.endDate ? `— ${item.endDate}` : ''}
+                  </span>
+                )}
               </div>
-              
-              {item.org && (
+
+              {(item.org || item.role) && (
                 <p className="text-sm font-serif italic text-[#9CA3AF] dark:text-[#444444]">
-                  {item.org} {item.location && `· ${item.location}`}
+                  {item.org || item.role} {item.location && `· ${item.location}`}
                 </p>
               )}
 
@@ -68,13 +69,13 @@ const ListView: React.FC<ListViewProps> = ({ locale, title, items }) => {
 
               {item.tags && (
                 <div className="flex flex-wrap gap-2 pt-2">
-                  {item.tags.map(t => <TagPill key={t}>{t}</TagPill>)}
+                  {item.tags.map((tag) => <TagPill key={tag}>{tag}</TagPill>)}
                 </div>
               )}
 
               {item.links && (
                 <div className="flex gap-4 pt-2">
-                  {item.links.map(l => <LinkIcon key={l.url} href={l.url} label={l.label} />)}
+                  {item.links.map((link) => <LinkIcon key={link.url} href={link.url} label={link.label} />)}
                 </div>
               )}
             </div>

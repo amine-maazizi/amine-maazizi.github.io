@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link, useLocation, useNavigate } from 'react-router-dom';
 import { Locale, I18nStrings } from '../types';
@@ -9,7 +8,7 @@ interface LayoutProps {
   metadataRail?: React.ReactNode;
 }
 
-const Layout: React.FC<LayoutProps> = ({ children, metadataRail }) => {
+const Layout: React.FC<LayoutProps> = ({ children }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
@@ -26,7 +25,6 @@ const Layout: React.FC<LayoutProps> = ({ children, metadataRail }) => {
   const locale: Locale = location.pathname.startsWith('/fr') ? 'fr' : 'en';
   const strings: I18nStrings = locale === 'fr' ? fr : en;
 
-  // Sync theme state with DOM on mount
   useEffect(() => {
     const isDark = document.documentElement.classList.contains('dark');
     const currentTheme = isDark ? 'dark' : 'light';
@@ -50,10 +48,10 @@ const Layout: React.FC<LayoutProps> = ({ children, metadataRail }) => {
   const toggleLocale = () => {
     const newLocale = locale === 'en' ? 'fr' : 'en';
     const currentPath = location.pathname;
-    const newPath = currentPath.startsWith('/fr') 
-      ? currentPath.replace('/fr', `/${newLocale}`) 
+    const newPath = currentPath.startsWith('/fr')
+      ? currentPath.replace('/fr', `/${newLocale}`)
       : currentPath.replace('/en', `/${newLocale}`);
-    
+
     navigate(newPath);
   };
 
@@ -62,11 +60,14 @@ const Layout: React.FC<LayoutProps> = ({ children, metadataRail }) => {
     { path: `/${locale}/experience`, label: strings.nav.experience },
     { path: `/${locale}/publications`, label: strings.nav.publications },
     { path: `/${locale}/projects`, label: strings.nav.projects },
-    { path: `/${locale}/talks`, label: strings.nav.talks },
     { path: `/${locale}/education`, label: strings.nav.education },
     { path: `/${locale}/awards`, label: strings.nav.awards },
     { path: `/${locale}/contact`, label: strings.nav.contact },
   ];
+
+  const interests = locale === 'en'
+    ? ['Representation learning', 'Geometric inductive biases', 'Multimodal learning', 'Latent-space modeling', 'Foundation models', 'Scientific machine learning']
+    : ['Apprentissage de représentations', 'Biais inductifs géométriques', 'Apprentissage multimodal', 'Modélisation en espace latent', 'Modèles de fondation', 'Apprentissage automatique scientifique'];
 
   return (
     <div className="min-h-screen flex flex-col selection:bg-[#E6EDF3] dark:selection:bg-[#27313A]">
@@ -75,14 +76,14 @@ const Layout: React.FC<LayoutProps> = ({ children, metadataRail }) => {
           <Link to={`/${locale}`} className="font-bold tracking-tighter text-lg mono uppercase text-[#111111] dark:text-[#E6EDF3]">
             Amine Maazizi
           </Link>
-          
+
           <nav className="hidden md:flex items-center gap-6 text-[11px] font-bold uppercase tracking-wider">
             {navItems.map((item) => (
               <NavLink
                 key={item.path}
                 to={item.path}
                 end={item.path.split('/').length === 2}
-                className={({ isActive }) => 
+                className={({ isActive }) =>
                   `transition-colors hover:text-[#1F4E79] dark:hover:text-[#7FB3C8] ${isActive ? 'text-[#1F4E79] dark:text-[#7FB3C8]' : 'text-[#444444] dark:text-[#9CA3AF]'}`
                 }
               >
@@ -92,13 +93,13 @@ const Layout: React.FC<LayoutProps> = ({ children, metadataRail }) => {
           </nav>
 
           <div className="flex items-center gap-4">
-            <button 
+            <button
               onClick={toggleLocale}
               className="text-[10px] font-bold px-2 py-1 rounded border border-[#E5E7EB] dark:border-[#27313A] hover:bg-[#E5E7EB] dark:hover:bg-[#27313A] transition-colors uppercase"
             >
               {locale === 'en' ? 'FR' : 'EN'}
             </button>
-            <button 
+            <button
               onClick={toggleTheme}
               className="p-2 rounded-full hover:bg-[#E5E7EB] dark:hover:bg-[#27313A] transition-colors"
               aria-label="Toggle theme"
@@ -124,17 +125,20 @@ const Layout: React.FC<LayoutProps> = ({ children, metadataRail }) => {
               <section>
                 <h3 className="mono uppercase text-[10px] font-bold text-[#9CA3AF] dark:text-[#444444] mb-3 tracking-widest">Affiliation</h3>
                 <p className="text-xs font-semibold leading-relaxed">
-                  MVA Master's Student<br/>
-                  <span className="text-[#9CA3AF] dark:text-[#444444]">ENS Paris-Saclay / ENSTA Paris</span>
+                  {locale === 'en' ? 'Research Intern at EPFL' : 'Stagiaire de recherche à l’EPFL'}<br />
+                  <span className="text-[#9CA3AF] dark:text-[#444444]">
+                    {locale === 'en' ? 'MVA Student / ENSTA Paris' : 'Étudiant MVA / ENSTA Paris'}
+                  </span>
                 </p>
               </section>
               <section>
-                <h3 className="mono uppercase text-[10px] font-bold text-[#9CA3AF] dark:text-[#444444] mb-3 tracking-widest">Research Interests</h3>
+                <h3 className="mono uppercase text-[10px] font-bold text-[#9CA3AF] dark:text-[#444444] mb-3 tracking-widest">
+                  {locale === 'en' ? 'Research Interests' : 'Intérêts de recherche'}
+                </h3>
                 <ul className="space-y-1 text-xs text-[#444444] dark:text-[#9CA3AF] font-serif italic">
-                  <li>Geometric Deep Learning</li>
-                  <li>Representation Learning</li>
-                  <li>Biomedical Imaging</li>
-                  <li>Shape Analysis</li>
+                  {interests.map((interest) => (
+                    <li key={interest}>{interest}</li>
+                  ))}
                 </ul>
               </section>
               <section>
