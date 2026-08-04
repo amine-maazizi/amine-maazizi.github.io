@@ -2,26 +2,25 @@
 import React from 'react';
 
 export const SectionHeader: React.FC<{ title: string; subtitle?: string }> = ({ title, subtitle }) => (
-  <header className="mb-8">
-    <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-[#111111] dark:text-[#E6EDF3] mb-3">{title}</h1>
-    {subtitle && <p className="text-xl text-[#444444] dark:text-[#9CA3AF] italic font-serif">{subtitle}</p>}
-    <div className="w-12 h-1 bg-[#1F4E79] dark:bg-[#4A90A4] mt-6" />
+  <header className="mb-7">
+    <h1 className="text-3xl md:text-4xl font-bold leading-tight text-[var(--color-text)] mb-3">{title}</h1>
+    {subtitle && <p className="text-base md:text-lg text-[var(--color-muted)] leading-relaxed">{subtitle}</p>}
   </header>
 );
 
 export const Thumbnail: React.FC<{ src?: string; alt: string; icon?: string }> = ({ src, alt, icon }) => {
   if (icon) return (
-    <div className="w-16 h-16 bg-white rounded flex items-center justify-center shrink-0 border border-[#E5E7EB] dark:border-[#27313A]">
-      <span className="text-[10px] font-bold text-[#444444] mono">{icon}</span>
+    <div className="w-16 h-16 bg-[var(--color-surface)] rounded flex items-center justify-center shrink-0 border border-[var(--color-border)]">
+      <span className="text-[10px] font-semibold text-[var(--color-muted)]">{icon}</span>
     </div>
   );
   if (!src) return (
-    <div className="w-16 h-16 bg-white rounded flex items-center justify-center shrink-0 border border-[#E5E7EB] dark:border-[#27313A]">
-      <span className="text-xs text-[#9CA3AF] mono">IMG</span>
+    <div className="w-16 h-16 bg-[var(--color-surface)] rounded flex items-center justify-center shrink-0 border border-[var(--color-border)]">
+      <span className="text-xs text-[var(--color-soft)]">Image</span>
     </div>
   );
   return (
-    <div className="w-16 h-16 bg-white rounded flex items-center justify-center shrink-0 border border-[#E5E7EB] dark:border-[#27313A] p-2">
+    <div className="w-16 h-16 bg-[var(--color-surface)] rounded flex items-center justify-center shrink-0 border border-[var(--color-border)] p-2">
       <img 
         src={src} 
         alt={alt} 
@@ -32,7 +31,7 @@ export const Thumbnail: React.FC<{ src?: string; alt: string; icon?: string }> =
 };
 
 export const TagPill: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <span className="px-2 py-0.5 bg-[#E5E7EB] dark:bg-[#27313A] text-[9px] font-bold uppercase tracking-wide text-[#444444] dark:text-[#9CA3AF] rounded whitespace-nowrap">
+  <span className="text-xs text-[var(--color-muted)] whitespace-nowrap">
     {children}
   </span>
 );
@@ -40,7 +39,7 @@ export const TagPill: React.FC<{ children: React.ReactNode }> = ({ children }) =
 export const LinkIcon: React.FC<{ href: string; label: string }> = ({ href, label }) => (
   <a 
     href={href} 
-    className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#1F4E79] dark:text-[#4A90A4] hover:underline decoration-2 underline-offset-4"
+    className="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--color-accent)] hover:text-[var(--color-accent-strong)] hover:underline underline-offset-4"
   >
     {label}
   </a>

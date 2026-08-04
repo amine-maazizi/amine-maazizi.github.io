@@ -20,7 +20,8 @@
     "id": "maazizi-2025-miwae",
     "title": "not-MIWAE: Deep Generative Modelling with Missing Not at Random Data and a Supervised MNAR Extension",
     "authors": ["A. Maazizi", "A. Gassem", "E. Melzani"],
-    "venue": "MVA course report",
+    "venue": "MVA, Probabilistic Graphical Models and Deep Generative Models",
+    "outputType": "technical report",
     "year": 2025,
     "type": "report",
     "label": "Course report",
@@ -38,7 +39,8 @@
     "id": "maazizi-2025-wasserstein",
     "title": "Efficient Wasserstein Barycenter Computation with Application to Texture Mixing",
     "authors": ["A. Maazizi", "E. Melzani", "S. Oukaci"],
-    "venue": "MVA Geometric Data Analysis",
+    "venue": "MVA, Geometric Data Analysis",
+    "outputType": "technical report",
     "year": 2025,
     "type": "report",
     "label": "Technical report",
@@ -54,9 +56,10 @@
   },
   {
     "id": "dupuis-2025-clairvoyance",
-    "title": "Clairvoyance: Smart Glasses for the Visually Impaired in Indoor Environment",
+    "title": "Clairvoyance: Smart Glasses for the Visually Impaired in Indoor Environments",
     "authors": ["G. Dupuis", "A. Maazizi"],
-    "venue": "ENSTA Paris student project",
+    "venue": "ENSTA Paris, Projet d’ingénieur en équipe (PIE)",
+    "outputType": "project report",
     "year": 2025,
     "type": "report",
     "label": "Archived report",
@@ -68,13 +71,14 @@
     "abstract": "Archived report on a smart-glasses prototype combining computer vision and lightweight reasoning for indoor assistance.",
     "abstractFr": "Rapport archivé sur un prototype de lunettes connectées combinant vision par ordinateur et raisonnement léger pour l’assistance en intérieur.",
     "tags": ["computer-vision", "accessibility", "edge-ai"],
-    "bibtex": "@techreport{dupuis2025clairvoyance,\n  title={Clairvoyance: Smart Glasses for the Visually Impaired in Indoor Environment},\n  author={Dupuis, G. and Maazizi, A.},\n  institution={ENSTA Paris student project},\n  year={2025}\n}"
+    "bibtex": "@techreport{dupuis2025clairvoyance,\n  title={Clairvoyance: Smart Glasses for the Visually Impaired in Indoor Environments},\n  author={Dupuis, G. and Maazizi, A.},\n  institution={ENSTA Paris, Projet d’ingénieur en équipe (PIE)},\n  year={2025}\n}"
   },
   {
     "id": "maazizi-2024-naist-survey",
     "title": "From Geometric Inductive Bias to 2D Generative Priors: A Structured Survey of Deep Learning for 3D Reconstruction from Text and Images",
     "authors": ["A. Maazizi"],
-    "venue": "NAIST CaRE Lab",
+    "venue": "NAIST, CaRE Laboratory, research collaboration",
+    "outputType": "research survey",
     "year": 2024,
     "type": "report",
     "label": "Technical report",
@@ -91,7 +95,8 @@
     "id": "maazizi-2026-label-free-cbm-audio",
     "title": "Adapting Label-Free Concept Bottleneck Models to Audio",
     "authors": ["A. Maazizi", "A. Gassem"],
-    "venue": "MVA Multimodal XAI",
+    "venue": "MVA, Multimodal Explainable AI",
+    "outputType": "technical report",
     "year": 2026,
     "type": "report",
     "label": "Course report",
@@ -109,7 +114,8 @@
     "id": "maazizi-2026-network-congestion",
     "title": "From Microscopic Interactions to Network Congestion",
     "authors": ["A. Gassem", "M. Lambert", "A. Maazizi", "S. Oukaci", "E. Melzani"],
-    "venue": "MVA course project",
+    "venue": "MVA, Interactions: Complexity, Stochasticity, Extrema and Rare Events",
+    "outputType": "technical report",
     "year": 2026,
     "type": "report",
     "label": "Master’s project",
@@ -121,13 +127,14 @@
     "abstract": "Course project exploring traffic congestion across microscopic simulation, reinforcement learning control, game-theoretic routing, and optimal-transport-inspired macroscopic modeling.",
     "abstractFr": "Projet de cours explorant la congestion routière à travers la simulation microscopique, le contrôle par apprentissage par renforcement, le routage game-théorique et une modélisation macroscopique inspirée du transport optimal.",
     "tags": ["scientific-machine-learning", "reinforcement-learning", "optimal-transport"],
-    "bibtex": "@techreport{gassem2026networkcongestion,\n  title={From Microscopic Interactions to Network Congestion},\n  author={Gassem, A. and Lambert, M. and Maazizi, A. and Oukaci, S. and Melzani, E.},\n  institution={MVA course project},\n  year={2026}\n}"
+    "bibtex": "@techreport{gassem2026networkcongestion,\n  title={From Microscopic Interactions to Network Congestion},\n  author={Gassem, A. and Lambert, M. and Maazizi, A. and Oukaci, S. and Melzani, E.},\n  institution={MVA, Interactions: Complexity, Stochasticity, Extrema and Rare Events},\n  year={2026}\n}"
   },
   {
     "id": "maazizi-2026-audio-deepfake",
     "title": "Audio Deepfake Detectability Depends Strongly on Generator Family",
     "authors": ["A. Maazizi", "A. Miraoui", "A. Boufous", "Y. Zhang", "J. Zhuo", "C. Yang"],
-    "venue": "IA321 final project",
+    "venue": "ENSTA Paris, supervised research project",
+    "outputType": "technical report",
     "year": 2026,
     "type": "report",
     "label": "Course report",
@@ -143,6 +150,6 @@
     "abstract": "Course project studying audio deepfake generation, detection, and explainability across voice-conversion and text-to-audio generators.",
     "abstractFr": "Projet de cours étudiant la génération, la détection et l’explicabilité des deepfakes audio à travers des générateurs de conversion vocale et de text-to-audio.",
     "tags": ["audio", "multimodal-learning", "interpretability"],
-    "bibtex": "@techreport{maazizi2026audiodeepfake,\n  title={Audio Deepfake Detectability Depends Strongly on Generator Family},\n  author={Maazizi, A. and Miraoui, A. and Boufous, A. and Zhang, Y. and Zhuo, J. and Yang, C.},\n  institution={IA321 final project},\n  year={2026}\n}"
+    "bibtex": "@techreport{maazizi2026audiodeepfake,\n  title={Audio Deepfake Detectability Depends Strongly on Generator Family},\n  author={Maazizi, A. and Miraoui, A. and Boufous, A. and Zhang, Y. and Zhuo, J. and Yang, C.},\n  institution={ENSTA Paris, supervised research project},\n  year={2026}\n}"
   }
 ]

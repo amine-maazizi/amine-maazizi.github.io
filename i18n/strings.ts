@@ -5,11 +5,7 @@ export const en: I18nStrings = {
     home: 'Overview',
     research: 'Research',
     publications: 'Papers',
-    experience: 'Experience',
-    projects: 'Projects',
-    awards: 'Awards',
     talks: 'Talks',
-    education: 'Education',
     updates: 'News',
     contact: 'Contact',
     cv: 'CV'
@@ -32,25 +28,21 @@ export const en: I18nStrings = {
 
 export const fr: I18nStrings = {
   nav: {
-    home: 'Aperçu',
+    home: 'Apercu',
     research: 'Recherche',
     publications: 'Travaux',
-    experience: 'Expérience',
-    projects: 'Projets',
-    awards: 'Distinctions',
     talks: 'Interventions',
-    education: 'Formation',
-    updates: 'Actualités',
+    updates: 'Actualites',
     contact: 'Contact',
     cv: 'CV'
   },
   ui: {
     cite: 'BibTeX',
     close: 'Fermer',
-    abstract: 'Résumé',
+    abstract: 'Resume',
     links: 'Ressources',
     filter: 'Filtrer par type',
-    all: 'Tous les éléments',
+    all: 'Tous les elements',
     search: 'Rechercher...',
     now: 'Actuel',
     currentFocus: 'Projets actuels',

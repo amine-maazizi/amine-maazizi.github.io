@@ -1,101 +1,111 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Locale, Publication } from '../types';
+import { Locale, Publication, PublicationType } from '../types';
 import { en, fr } from '../i18n/strings';
-import { SectionHeader, TagPill, LinkIcon } from '../components/UI';
+import { SectionHeader } from '../components/UI';
 
-type PaperTab = 'all' | 'conference' | 'journal' | 'preprint' | 'archive';
+type PaperCategoryId = 'preprints' | 'journalConference' | 'technicalReports' | 'posters';
 
-const tabs: PaperTab[] = ['all', 'conference', 'journal', 'preprint', 'archive'];
-
-const tabLabels: Record<Locale, Record<PaperTab, string>> = {
-  en: {
-    all: 'All',
-    conference: 'Conference',
-    journal: 'Journal',
-    preprint: 'Preprint',
-    archive: 'Archive',
-  },
-  fr: {
-    all: 'Tous',
-    conference: 'Conférence',
-    journal: 'Revue',
-    preprint: 'Prépublication',
-    archive: 'Archive',
-  },
+type PaperOutput = {
+  id: string;
+  title: string;
+  authors: string[];
+  year: number;
+  venue: string;
+  outputType: 'technical report' | 'project report' | 'research survey' | 'poster presentation';
+  pdfUrl?: string;
+  codeUrl?: string;
+  posterUrl?: string;
 };
 
+const categoryLabels: Record<PaperCategoryId, string> = {
+  preprints: 'Preprints',
+  journalConference: 'Journal and conference papers',
+  technicalReports: 'Technical reports',
+  posters: 'Posters and presentations',
+};
+
+const posterOutputs: PaperOutput[] = [
+  {
+    id: 'poster-notmiwae',
+    title: 'Deep Generative Modelling with MNAR Data and a Supervised Extension',
+    authors: ['A. Maazizi', 'A. Gassem', 'E. Melzani'],
+    year: 2026,
+    venue: 'MVA, Probabilistic Graphical Models and Deep Generative Models',
+    outputType: 'poster presentation',
+    posterUrl: '/documents/posters/not-miwae-mnar-poster.pdf',
+  },
+  {
+    id: 'poster-bida-sr',
+    title: 'A Critical Review of Zero-Shot Super-Resolution for Preclinical MRI',
+    authors: ['A. Maazizi', 'N. Vujadinovic'],
+    year: 2026,
+    venue: 'MVA, Deep Learning for Medical Imaging',
+    outputType: 'poster presentation',
+    posterUrl: '/documents/posters/zero-shot-mri-super-resolution-poster.pdf',
+  },
+];
+
+const toPaperOutput = (item: Publication): PaperOutput => ({
+  id: item.id,
+  title: item.title,
+  authors: item.authors,
+  year: item.year,
+  venue: item.venue,
+  outputType: item.outputType,
+  pdfUrl: item.pdfUrl,
+  codeUrl: item.codeUrl,
+});
+
 const AuthorList: React.FC<{ authors: string[] }> = ({ authors }) => (
-  <div className="flex flex-wrap gap-x-2 gap-y-1 text-sm font-medium text-[#444444] dark:text-[#9CA3AF]">
-    {authors.map((author, idx) => (
-      <span key={`${author}-${idx}`} className={author === 'A. Maazizi' ? 'font-bold underline decoration-[#1F4E79]' : ''}>
-        {author}{idx < authors.length - 1 ? ',' : ''}
-      </span>
+  <span className="text-[var(--color-muted)]">
+    {authors.map((author, index) => (
+      <React.Fragment key={`${author}-${index}`}>
+        <span className={author === 'A. Maazizi' ? 'font-semibold' : undefined}>{author}</span>
+        {index < authors.length - 1 ? ', ' : ''}
+      </React.Fragment>
     ))}
-  </div>
+  </span>
 );
 
-const ResourceLinks: React.FC<{ item: Publication }> = ({ item }) => (
-  <div className="flex flex-wrap items-center gap-4 pt-1">
-    {item.pdfUrl && <LinkIcon href={item.pdfUrl} label="PDF" />}
-    {item.codeUrl && <LinkIcon href={item.codeUrl} label="Code" />}
-    {item.datasetLinks?.map((dataset) => (
-      <LinkIcon key={dataset.url} href={dataset.url} label={dataset.label} />
-    ))}
-  </div>
+const ResourceLinks: React.FC<{ item: PaperOutput }> = ({ item }) => (
+  <span className="inline-flex flex-wrap gap-x-3 gap-y-1 text-sm">
+    {item.pdfUrl && (
+        <a href={item.pdfUrl} target="_blank" rel="noopener noreferrer" aria-label={`PDF: ${item.title}`} className="hover:underline underline-offset-4">
+        PDF
+      </a>
+    )}
+    {item.codeUrl && (
+      <a href={item.codeUrl} target="_blank" rel="noopener noreferrer" aria-label={`Code for ${item.title}`} className="hover:underline underline-offset-4">
+        Code
+      </a>
+    )}
+    {item.posterUrl && (
+        <a href={item.posterUrl} target="_blank" rel="noopener noreferrer" aria-label={`Poster: ${item.title}`} className="hover:underline underline-offset-4">
+        Poster
+      </a>
+    )}
+  </span>
 );
 
-const ResearchCard: React.FC<{ item: Publication; locale: Locale }> = ({ item, locale }) => (
-  <article className="group relative">
-    <div className="flex flex-col gap-3">
-      <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2">
-        <h3 className="text-xl font-bold group-hover:text-[#1F4E79] dark:group-hover:text-[#7FB3C8] transition-colors leading-snug">
-          {item.title}
-        </h3>
-        <span className="text-xs font-bold mono text-[#9CA3AF] dark:text-[#444444]">{item.year}</span>
-      </div>
-      <AuthorList authors={item.authors} />
-      <p className="text-xs italic text-[#9CA3AF] dark:text-[#444444] font-serif">
-        {locale === 'fr' ? item.labelFr : item.label}
-        {item.status && <span className="ml-2 not-italic mono uppercase">{item.status}</span>}
-      </p>
-      <p className="text-sm leading-relaxed text-[#444444] dark:text-[#9CA3AF]">
-        {locale === 'fr' ? item.abstractFr : item.abstract}
-      </p>
-      <ResourceLinks item={item} />
-      <div className="flex flex-wrap gap-2">
-        {item.tags.map((tag) => <TagPill key={tag}>{tag}</TagPill>)}
-      </div>
+const PaperRow: React.FC<{ item: PaperOutput }> = ({ item }) => (
+  <li className="space-y-1">
+    <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
+      <h3 className="min-w-0 break-words font-semibold leading-snug text-[var(--color-text)]">{item.title}</h3>
+      <span className="text-sm text-[var(--color-soft)] shrink-0">{item.year}</span>
     </div>
-  </article>
-);
-
-const ArchiveCard: React.FC<{ item: Publication; locale: Locale }> = ({ item, locale }) => (
-  <article className="rounded-lg border border-[#E5E7EB] dark:border-[#27313A] p-4">
-    <div className="flex flex-col gap-2.5">
-      <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2">
-        <div>
-          <h3 className="text-base font-bold leading-snug text-[#111111] dark:text-[#E6EDF3]">
-            {item.title}
-          </h3>
-          <p className="text-[11px] font-bold mono uppercase tracking-wider text-[#1F4E79] dark:text-[#4A90A4] mt-1">
-            {locale === 'fr' ? item.labelFr : item.label}
-          </p>
-        </div>
-        <span className="text-xs font-bold mono text-[#9CA3AF] dark:text-[#444444]">{item.year}</span>
-      </div>
+    <p className="text-sm leading-relaxed">
       <AuthorList authors={item.authors} />
-      <p className="text-sm leading-relaxed text-[#444444] dark:text-[#9CA3AF]">
-        {locale === 'fr' ? item.abstractFr : item.abstract}
-      </p>
-      <ResourceLinks item={item} />
-    </div>
-  </article>
+    </p>
+    <p className="text-sm leading-relaxed text-[var(--color-muted)]">
+      {item.venue}, {item.outputType}
+    </p>
+    {(item.pdfUrl || item.codeUrl || item.posterUrl) && <ResourceLinks item={item} />}
+  </li>
 );
 
 const Publications: React.FC<{ locale: Locale }> = ({ locale }) => {
   const strings = locale === 'fr' ? fr : en;
   const [items, setItems] = useState<Publication[]>([]);
-  const [activeTab, setActiveTab] = useState<PaperTab>('all');
 
   useEffect(() => {
     fetch('/publications.json')
@@ -104,65 +114,49 @@ const Publications: React.FC<{ locale: Locale }> = ({ locale }) => {
       .catch((err) => console.error('Failed to load papers:', err));
   }, []);
 
-  const visibleItems = useMemo(() => {
+  const categories = useMemo(() => {
     const sorted = [...items].sort((a, b) => b.year - a.year || a.title.localeCompare(b.title));
 
-    if (activeTab === 'archive') {
-      return sorted.filter((item) => item.archive);
-    }
+    const preprints = sorted
+      .filter((item) => item.type === PublicationType.PREPRINT && !item.archive)
+      .map(toPaperOutput);
 
-    const nonArchive = sorted.filter((item) => !item.archive);
+    const journalConference = sorted
+      .filter((item) => [PublicationType.JOURNAL, PublicationType.CONFERENCE].includes(item.type) && !item.archive)
+      .map(toPaperOutput);
 
-    if (activeTab === 'all') {
-      return nonArchive;
-    }
+    const technicalReports = sorted
+      .filter((item) => item.type === PublicationType.REPORT || item.archive)
+      .map(toPaperOutput);
 
-    return nonArchive.filter((item) => item.type === activeTab);
-  }, [activeTab, items]);
+    return [
+      { id: 'preprints' as const, items: preprints },
+      { id: 'journalConference' as const, items: journalConference },
+      { id: 'technicalReports' as const, items: technicalReports },
+      { id: 'posters' as const, items: [...posterOutputs].sort((a, b) => b.year - a.year || a.title.localeCompare(b.title)) },
+    ];
+  }, [items]);
+
+  const visibleCategories = categories.filter((category) => category.items.length > 0);
 
   return (
     <div className="space-y-10">
-      <SectionHeader
-        title={strings.nav.publications}
-        subtitle={locale === 'fr' ? 'Recherche sélectionnée et rapports archivés.' : 'Selected research and archived reports.'}
-      />
+      <SectionHeader title={strings.nav.publications} subtitle="Research outputs and archived technical work." />
 
-      <div className="flex flex-wrap gap-1.5 border-b border-[#E5E7EB] dark:border-[#27313A] pb-3">
-        {tabs.map((tab) => (
-          <button
-            key={tab}
-            type="button"
-            onClick={() => setActiveTab(tab)}
-            className={`px-2.5 py-1 rounded text-[10px] font-bold uppercase tracking-wide transition-colors whitespace-nowrap ${
-              activeTab === tab
-                ? 'bg-[#1F4E79] text-white'
-                : 'bg-[#E5E7EB] dark:bg-[#27313A] text-[#444444] dark:text-[#9CA3AF] hover:bg-[#D1D5DB] dark:hover:bg-[#33404B]'
-            }`}
-          >
-            {tabLabels[locale][tab]}
-          </button>
+      <div className="space-y-10">
+        {visibleCategories.map((category) => (
+          <section key={category.id} className="space-y-4" aria-labelledby={`papers-${category.id}`}>
+            <h2 id={`papers-${category.id}`} className="text-xl font-bold text-[var(--color-text)] border-b border-[var(--color-border)] pb-2">
+              {categoryLabels[category.id]}
+            </h2>
+            <ul className="space-y-5">
+              {category.items.map((item) => (
+                <PaperRow key={item.id} item={item} />
+              ))}
+            </ul>
+          </section>
         ))}
       </div>
-
-      <section className={activeTab === 'archive' ? 'space-y-4' : 'space-y-8'}>
-        <h2 className="text-sm font-bold mono uppercase tracking-widest text-[#9CA3AF] dark:text-[#444444] border-b border-[#E5E7EB] dark:border-[#27313A] pb-2">
-          {tabLabels[locale][activeTab]}
-        </h2>
-
-        {visibleItems.length === 0 ? (
-          <p className="text-sm text-[#9CA3AF] dark:text-[#444444] italic">
-            {locale === 'fr' ? 'Aucun élément pour le moment.' : 'No items yet.'}
-          </p>
-        ) : (
-          <div className={activeTab === 'archive' ? 'space-y-4' : 'space-y-8'}>
-            {visibleItems.map((item) => (
-              activeTab === 'archive'
-                ? <ArchiveCard key={item.id} item={item} locale={locale} />
-                : <ResearchCard key={item.id} item={item} locale={locale} />
-            ))}
-          </div>
-        )}
-      </section>
     </div>
   );
 };

@@ -16,6 +16,7 @@ export interface Publication {
   title: string;
   authors: string[];
   venue: string;
+  outputType?: 'technical report' | 'project report' | 'research survey' | 'poster presentation';
   year: number;
   type: PublicationType;
   label?: string;
@@ -60,11 +61,7 @@ export interface I18nStrings {
     home: string;
     research: string;
     publications: string;
-    experience: string;
-    projects: string;
-    awards: string;
     talks: string;
-    education: string;
     updates: string;
     contact: string;
     cv: string;

@@ -35,7 +35,7 @@ const ExpandableText: React.FC<ExpandableTextProps> = ({
           type="button"
           onClick={() => setExpanded((e) => !e)}
           aria-expanded={expanded}
-          className="mt-2 text-xs font-bold uppercase tracking-wider text-[#1F4E79] dark:text-[#4A90A4] hover:underline decoration-2 underline-offset-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1F4E79] dark:focus-visible:ring-[#4A90A4] rounded"
+          className="mt-2 text-sm font-medium text-[var(--color-accent)] hover:text-[var(--color-accent-strong)] hover:underline underline-offset-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] rounded"
         >
           {expanded ? showLessLabel : showMoreLabel}
         </button>

@@ -22,18 +22,18 @@ const ListView: React.FC<ListViewProps> = ({ locale, title, items }) => {
             <Thumbnail src={item.thumbnail} alt={item.title} icon={item.icon} />
             <div className="flex-1 space-y-2">
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
-                <h3 className="text-xl font-bold text-[#111111] dark:text-[#E6EDF3] group-hover:text-[#1F4E79] transition-colors">
+                <h3 className="text-xl font-semibold text-[var(--color-text)] group-hover:text-[var(--color-accent)] transition-colors">
                   {item.title}
                 </h3>
                 {(item.date || item.endDate) && (
-                  <span className="text-xs font-bold text-[#9CA3AF] dark:text-[#444444] mono uppercase">
+                  <span className="text-sm text-[var(--color-soft)]">
                     {item.date} {item.endDate ? `— ${item.endDate}` : ''}
                   </span>
                 )}
               </div>
 
               {(item.org || item.role) && (
-                <p className="text-sm font-serif italic text-[#9CA3AF] dark:text-[#444444]">
+                <p className="text-sm text-[var(--color-soft)]">
                   {item.org || item.role} {item.location && `· ${item.location}`}
                 </p>
               )}
@@ -42,15 +42,15 @@ const ListView: React.FC<ListViewProps> = ({ locale, title, items }) => {
                 text={item.summary}
                 showMoreLabel={strings.ui.showMore}
                 showLessLabel={strings.ui.showLess}
-                className="text-[#444444] dark:text-[#9CA3AF] leading-relaxed text-sm"
+                className="text-[var(--color-muted)] leading-relaxed text-sm"
               />
 
               {item.ranking && (
                 <div className="pt-2">
-                  <p className="text-xs font-semibold text-[#1F4E79] dark:text-[#4A90A4] uppercase tracking-wide">
+                  <p className="text-sm font-semibold text-[var(--color-accent)]">
                     {locale === 'fr' ? 'Classement' : 'Ranking'}
                   </p>
-                  <p className="text-sm text-[#444444] dark:text-[#9CA3AF]">
+                  <p className="text-sm text-[var(--color-muted)]">
                     {item.ranking}
                   </p>
                 </div>
@@ -58,10 +58,10 @@ const ListView: React.FC<ListViewProps> = ({ locale, title, items }) => {
 
               {item.coursework && item.coursework.length > 0 && (
                 <div className="pt-2">
-                  <p className="text-xs font-semibold text-[#1F4E79] dark:text-[#4A90A4] uppercase tracking-wide">
+                  <p className="text-sm font-semibold text-[var(--color-accent)]">
                     {locale === 'fr' ? 'Enseignements pertinents' : 'Relevant coursework'}
                   </p>
-                  <p className="text-sm text-[#444444] dark:text-[#9CA3AF]">
+                  <p className="text-sm text-[var(--color-muted)]">
                     {item.coursework.join(', ')}
                   </p>
                 </div>
