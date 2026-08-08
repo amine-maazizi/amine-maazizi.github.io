@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { I18nStrings } from '../types';
 import { en } from '../i18n/strings';
-import PointCatIcon from './PointCatIcon';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -28,14 +27,13 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       >
         Skip to main content
       </a>
-      <header className="border-b border-[var(--color-border)]">
-        <div className="max-w-[880px] mx-auto px-5 py-4 flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-3">
+      <header className="border-b border-[var(--color-header-border)]">
+        <div className="max-w-[880px] mx-auto px-5 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <Link
             to="/"
             className="site-name inline-flex items-center gap-2 text-[1.05rem] font-bold text-[var(--color-text)] hover:text-[var(--color-accent)]"
           >
-            <PointCatIcon className="h-8 w-8 shrink-0 text-[var(--color-accent)]" />
-            <span>Amine Maazizi</span>
+            Amine Maazizi
           </Link>
 
           <nav aria-label="Primary navigation" className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[0.95rem]">

@@ -44,8 +44,8 @@ const honors = [
 const Home: React.FC<{ locale: Locale }> = ({ locale }) => {
   return (
     <div className="space-y-14">
-      <section className="grid gap-8 md:grid-cols-[minmax(0,1fr)_260px] md:items-start">
-        <div className="space-y-5">
+      <section className="grid gap-8 md:grid-cols-[minmax(0,1fr)_260px] md:items-center">
+        <div className="space-y-5 text-center">
           <div className="space-y-3">
             <h1 className="text-3xl md:text-[2.2rem] font-bold leading-tight text-[var(--color-text)]">
               Amine Maazizi
@@ -56,12 +56,12 @@ const Home: React.FC<{ locale: Locale }> = ({ locale }) => {
             </div>
           </div>
 
-          <p className="text-base md:text-lg leading-relaxed text-[var(--color-text)] max-w-2xl">
+          <p className="mx-auto text-base md:text-lg leading-relaxed text-[var(--color-text)] max-w-2xl">
             I am interested in representation learning, open-vocabulary 3D perception, and multimodal knowledge
             transfer from vision-language models to LiDAR and point clouds.
           </p>
 
-          <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
+          <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-sm">
             <a href="mailto:amine.maazizi@epfl.ch" className="hover:underline underline-offset-4">
               Email
             </a>
