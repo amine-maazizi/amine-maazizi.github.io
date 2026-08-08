@@ -75,7 +75,7 @@
   },
   {
     "id": "maazizi-2024-naist-survey",
-    "title": "From Geometric Inductive Bias to 2D Generative Priors: A Structured Survey of Deep Learning for 3D Reconstruction from Text and Images",
+    "title": "A Focused Perspective on 3D Generative Models",
     "authors": ["A. Maazizi"],
     "venue": "NAIST, CaRE Laboratory, research collaboration",
     "outputType": "research survey",
