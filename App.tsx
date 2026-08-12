@@ -31,15 +31,15 @@ const Contact: React.FC<{ locale: Locale }> = ({ locale }) => {
         </p>
         <div className="space-y-3 text-[var(--color-muted)] pl-4 border-l border-[var(--color-border)]">
           <p className="text-sm">
-            <a href="mailto:amine.maazizi@ensta.fr" className="hover:text-[var(--color-accent-strong)] hover:underline underline-offset-4 transition-colors">amine.maazizi@ensta.fr</a>
+            <a href="mailto:amine.maazizi@ensta.fr" className="hover:text-[var(--color-accent-strong)] hover:underline underline-offset-4 transition-colors">amine.maazizi [at] ensta [dot] fr</a>
             <span className="text-xs ml-2 text-[var(--color-soft)]">(ENSTA Paris)</span>
           </p>
           <p className="text-sm">
-            <a href="mailto:amine.maazizi@ip-paris.fr" className="hover:text-[var(--color-accent-strong)] hover:underline underline-offset-4 transition-colors">amine.maazizi@ip-paris.fr</a>
+            <a href="mailto:amine.maazizi@ip-paris.fr" className="hover:text-[var(--color-accent-strong)] hover:underline underline-offset-4 transition-colors">amine.maazizi [at] ip-paris [dot] fr</a>
             <span className="text-xs ml-2 text-[var(--color-soft)]">(Institut Polytechnique de Paris)</span>
           </p>
           <p className="text-sm">
-            <a href="mailto:amine.maazizi@epfl.ch" className="hover:text-[var(--color-accent-strong)] hover:underline underline-offset-4 transition-colors">amine.maazizi@epfl.ch</a>
+            <a href="mailto:amine.maazizi@epfl.ch" className="hover:text-[var(--color-accent-strong)] hover:underline underline-offset-4 transition-colors">amine.maazizi [at] epfl [dot] ch</a>
             <span className="text-xs ml-2 text-[var(--color-soft)]">(EPFL)</span>
           </p>
         </div>
