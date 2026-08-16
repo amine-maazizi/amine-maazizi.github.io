@@ -1,23 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Amine Maazizi</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Press+Start+2P&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-  </head>
-  <div id="alert">Alert</div>
-  <body>
+---
+import Layout from "../layouts/layout.astro";
+---
 
-
-    <h1>Amine Maazizi</h1>
-    <h4 id="nav-bar">Overview - Blog - Papers - Contact</h4>
-    <h4>Research intern @ EPFL AIMM Lab, Incomming PhD student @ Mines Paris COAR Lab</h4>
-    <p>I'm a postgraduate researcher in machine learning & computer vision (MVA) from ENS Paris-Saclay 
+<Layout>
+    <div id="seperation"></div>
+    <div id="statement"> 
+    <p id="description">I'm a postgraduate researcher in machine learning & computer vision (MVA) from ENS Paris-Saclay 
         and a research engineer graduate from ENSTA Paris. Currently conducting research on foundation model-based
         perturbation modeling on spatial proteomics data at EPFL's Artificial Intelligence for Molecular Medicine Lab, 
         I'll be joining Mines Paris Centre of Robotics starting November 2026 for my PhD in robotics and 3D vision 
@@ -25,7 +13,9 @@
     </p>
     <p>github: <a href="https://github.com/amine-maazizi" target="_blank">@amine-maazizi</a></p>
     <p>email: <button onclick="copyToClipboard()" id="email">amine.maazizi [at] ensta (dot) fr</button></p>
+    </div>
 
+    <div class="bullet-section">
     <h2>News</h2>
     <ul>
         <li><b>August 2026:</b> Admitted to the PhD program at Mines Paris.</li>
@@ -33,9 +23,14 @@
             Dr. Lukas Klein.</li>
         <li><b>November 2025:</b> Finalist of the best undergraduate research project award organised by ENSTA Paris and the SAE.</li>
         <li><b>June 2025:</b>  Admitted to the highly selective graduate programme MVA (Mathematics, Vision, Learning).</li>
-
     </ul>
+    </div>
 
-    <script src="js/index.js" defer></script>
-  </body>
-</html>
+    <div class="bullet-section">
+    <h2>Honors</h2>
+    <ul>
+        <li><b>2026:</b> Finalist, Best Undergraduate Research Project Award, ENSTA Paris</li>
+        <li><b>2025:</b> Moroccan Excellence Scholarship granted by the Ministry of Higher Education.</li>
+    </ul>
+    </div>
+</Layout>
