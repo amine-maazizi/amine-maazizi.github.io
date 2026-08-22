@@ -38,6 +38,8 @@ import Footer from "../components/Footer.astro";
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Press+Start+2P&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
+    
+    <link rel="icon" href="/favicon.svg" />
 
     <script type="importmap">
       {
@@ -49,7 +51,7 @@ import Footer from "../components/Footer.astro";
     </script>
   </head>
 
-  <body>
+  <body data-base-url={import.meta.env.BASE_URL}>
     <div id="alert">Alert</div>
     <div id="point-cloud-background"></div>
 
@@ -59,9 +61,10 @@ import Footer from "../components/Footer.astro";
       <slot />
     </main>
 
-    <Footer />
+    <Footer/>
 
     <script is:inline src="/js/index.js"></script>
     <script is:inline type="module" src="/js/background.js"></script>
   </body>
+
 </html>

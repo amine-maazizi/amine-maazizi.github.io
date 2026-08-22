@@ -37,13 +37,19 @@ const loader = new PLYLoader();
 
 let pointCloud;
 
+const baseURL = document.body.dataset.baseURL;
+const assertURL = new URL(
+    "assets/island.ply",
+    new URL(baseURL, window.location.origin)
+);
+
 loader.load(
-    "./assets/fragment.ply",
+    assertURL.href,
 
     (geometry) => {
 
         console.log("PLY loaded");
-        console.log(geometry);
+        // console.log(geometry);
 
         // Center point cloud around (0, 0, 0)
         geometry.center();
@@ -82,7 +88,7 @@ loader.load(
         if (xhr.total) {
             const percent = xhr.loaded / xhr.total * 100;
 
-            console.log(`${percent.toFixed(1)}% loaded`);
+            // console.log(`${percent.toFixed(1)}% loaded`);
         }
     },
 

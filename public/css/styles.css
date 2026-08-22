@@ -43,11 +43,16 @@ body {
     flex-direction: column;
     min-height: 100vh;
     margin: 0;
-    padding: 10px 10px 0px 10px;
+    padding: 0;
 }
 
 body::-webkit-scrollbar {
   display: none;
+}
+
+header, main {
+    margin: 5px 25px 0px 25px;
+    padding: 10px 10px 0px 10px;
 }
 
 #point-cloud-background {
@@ -178,16 +183,6 @@ button {
     color: var(--secondary-text);
 }
 
-#email {
-    padding: 0;
-    border: none;
-    background: none;
-}
-
-#email:hover {
-    color: var(--primary-hover);
-}
-
 #seperation {
     background-color: var(--border);
     width: 100%;
@@ -198,23 +193,47 @@ button {
     padding: 0px 50px;
 }
 
+.paper {
+    margin-bottom: 1.4rem;
+}
+
+.paper-title {
+    display: block;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+}
+
+.paper-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.12rem;
+    font-size: 0.85rem;
+}
+
+.paper-authors {
+    font-style: italic;
+}
+
+.paper-course {
+    font-size: 0.8rem;
+}
 
 footer {
-  margin-top: auto;
+    margin-top: auto;
 
-  width: 100%;
-  padding: 10px 0px;
-  margin-left: auto;
-  margin-right: auto;
+    width: 100%;
+    padding: 10px 0px;
+    margin-left: auto;
+    margin-right: auto;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-  background-color: var(--main-background);
-  color: var(--secondary-text);
+    background-color: var(--main-background); 
+    color: var(--secondary-text);
 
-  text-align: center;
-  font-size: x-small;
-  border-radius: 12px;
+    text-align: center;
+    font-size: x-small;
 }

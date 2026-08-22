@@ -1,16 +1,25 @@
-async function copyToClipboard() {
+const emails = document.getElementsByClassName("email");
+
+for (const email of emails) {
+    email.addEventListener('click', (event) => copyToClipboard(email));
+} 
+
+async function copyToClipboard(link) {
     // Get the text field
-    var button = document.getElementById("email");
-    var text = button.textContent;
+    var text = link.innerHTML;
     var sanitizedText = text.replace(" [at] ", "@").replace(" (dot) ", ".");
 
     navigator.clipboard.writeText(sanitizedText);
 
-    button.style.pointerEvents = 'none';
+    for (const email of emails) {
+        email.style.pointerEvents = 'none';
+    }
 
     await customAlert("Copied to clipboard");
 
-    button.style.pointerEvents = 'auto';
+    for (const email of emails) {
+        email.style.pointerEvents = 'auto';
+    }
 }
 
 
