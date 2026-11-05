@@ -1,13 +1,28 @@
+---
+const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+const isCurrent = (path: string) => currentPath === path;
+---
+
 <header>
     <div id="identity">
         <h1>Amine Maazizi</h1>
-        <h4>Research intern @ EPFL AIMM Lab. Incoming PhD student @ Mines Paris CAOR Lab</h4>
+        <p>PhD student at Mines Paris – PSL</p>
     </div>
 
-    <ul id="nav-bar">
-        <li><a href="/">Home</a></li>
-        <li><a href="/papers">Papers</a></li>
-        <li><a href="/projects">Projects</a></li>
-        <li><a href="/contact">Contact</a></li>
-    </ul>
+    <nav aria-label="Primary navigation">
+        <ul id="nav-bar">
+            <li><a href="/" aria-current={isCurrent("/") ? "page" : undefined}>Home</a></li>
+            <li><a href="/papers" aria-current={isCurrent("/papers") ? "page" : undefined}>Papers</a></li>
+            <li><a href="/projects" aria-current={isCurrent("/projects") ? "page" : undefined}>Projects</a></li>
+            <li><a href="/contact" aria-current={isCurrent("/contact") ? "page" : undefined}>Contact</a></li>
+            <li>
+                <a
+                    href="/MAAZIZI_CV.pdf"
+                    target="_blank"
+                    rel="noopener"
+                    aria-label="Open Amine Maazizi's CV PDF in a new tab"
+                >CV</a>
+            </li>
+        </ul>
+    </nav>
 </header>

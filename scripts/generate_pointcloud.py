@@ -1,176 +1,161 @@
+import argparse
+from pathlib import Path
+
 import numpy as np
-import pyvista as pv
 
-SEED = 2004
 
+DEFAULT_SEED = 2004
 GRID_X = 320
 GRID_Y = 260
-
-ISLAND_RADIUS = 1.0
-MAX_HEIGHT = 0.8
-COAST_WIDTH = 0.05
-
 POINT_COLOR = np.array([37, 99, 235], dtype=np.uint8)
-
-OUTPUT_FILE = "./public/assets/island.ply"
-
-rng = np.random.default_rng(SEED)
-
-# Coastline
-def island_radius(theta):
-    radius = ISLAND_RADIUS
-    radius += 0.13 * np.sin(3.0 * theta + 0.7)
-    radius += 0.07 * np.sin(5.0 * theta - 1.3)
-    radius += 0.04 * np.sin(8.0 * theta + 2.0)
-    return radius
-
-def warp_coordinates(x, y):
-    warp_x = 0.08 * np.sin(2.3 * y + 0.7 * np.sin(3.0 * x))
-    warp_y = 0.08 * np.sin(2.0 * x - 0.5 * np.sin(2.7 * y))
-    return x + warp_x, y + warp_y
-
-def normalized_radius(x, y):
-    xw, yw = warp_coordinates(x, y)
-
-    theta = np.arctan2(yw, xw)
-    r = np.sqrt(xw**2 + yw**2)
-
-    boundary = island_radius(theta)
-
-    return r / boundary
+OUTPUT_FILE = Path("./public/assets/island.ply")
 
 
-# Moutains 
-def base_falloff(q):
-    return np.maximum(0.0, 1.0 - q**1.5) ** 2
+def hash2(ix, iy, seed):
+    """Deterministic lattice values for any integer coordinate and seed."""
+    value = np.sin(
+        ix * 127.1 + iy * 311.7 + seed * 74.7
+    ) * 43758.5453123
+    return value - np.floor(value)
 
-def gaussian_mountain(x, y, cx, cy, sx, sy, amplitude):
-    dx = (x - cx) / sx
-    dy = (y - cy) / sy
 
-    return amplitude * np.exp(-0.5 * (dx**2 + dy**2))
+def smoothstep(value):
+    return value * value * (3.0 - 2.0 * value)
 
-def ridge_axis(x):
-    return (
-        0.14 * np.sin(1.9 * x - 0.3)
-        - 0.18 * x
-        + 0.025 * np.sin(6.0 * x + 0.4)
-        + 0.03
+
+def value_noise(x, y, seed):
+    x0 = np.floor(x).astype(np.int64)
+    y0 = np.floor(y).astype(np.int64)
+    tx = smoothstep(x - x0)
+    ty = smoothstep(y - y0)
+
+    a = hash2(x0, y0, seed)
+    b = hash2(x0 + 1, y0, seed)
+    c = hash2(x0, y0 + 1, seed)
+    d = hash2(x0 + 1, y0 + 1, seed)
+
+    ab = a + (b - a) * tx
+    cd = c + (d - c) * tx
+
+    return (ab + (cd - ab) * ty) * 2.0 - 1.0
+
+
+def fbm(x, y, seed, octaves=5):
+    value = np.zeros_like(x, dtype=np.float64)
+    amplitude = 0.5
+    frequency = 1.0
+    normalization = 0.0
+
+    for octave in range(octaves):
+        value += amplitude * value_noise(
+            x * frequency,
+            y * frequency,
+            seed + octave * 101,
+        )
+        normalization += amplitude
+        amplitude *= 0.5
+        frequency *= 2.0
+
+    return value / normalization
+
+
+def island_profile(x, y, seed):
+    theta = np.arctan2(y, x)
+    boundary = 0.82 + 0.14 * fbm(
+        np.cos(theta) * 1.7,
+        np.sin(theta) * 1.7,
+        seed + 17,
     )
 
-def branch_axis(x):
-    return ridge_axis(x) - 0.14 * np.exp(-((x - 0.02) / 0.42) ** 2) - 0.03
-
-def terrain_noise(x, y):
-    n1 = np.sin(2.1 * x + 1.5 * y + 0.7 * np.sin(2.3 * y))
-    n2 = np.sin(4.2 * x - 3.4 * y + 1.0 * np.sin(1.8 * x))
-    n3 = np.sin(8.0 * x + 6.2 * y + 1.1 * np.sin(2.6 * x - 1.2 * y))
-
-    return (
-        1.00 * n1
-        + 0.45 * n2
-        + 0.18 * n3
-    ) / 1.63
-
-def height_function(x, y):
-    q = normalized_radius(x, y)
-
-    falloff = base_falloff(q)
-
-    base = 0.48 * falloff
-
-    axis0 = ridge_axis(x)
-    axis1 = branch_axis(x)
-
-    width0 = 0.11 + 0.02 * np.cos(2.2 * x)
-    width1 = 0.08 + 0.015 * np.sin(2.7 * x + 0.8)
-
-    d0 = (y - axis0) / width0
-    d1 = (y - axis1) / width1
-
-    main_ridge = np.exp(-0.5 * d0**2)
-    branch_ridge = 0.55 * np.exp(-0.5 * d1**2) * np.exp(-((x - 0.02) / 0.55) ** 2)
-
-    p1 = gaussian_mountain(x, y, -0.30, ridge_axis(-0.30) + 0.02, 0.11, 0.08, 0.18)
-    p2 = gaussian_mountain(x, y, -0.08, ridge_axis(-0.08) + 0.03, 0.12, 0.09, 0.26)
-    p3 = gaussian_mountain(x, y, 0.16, ridge_axis(0.16) + 0.02, 0.10, 0.08, 0.20)
-    p4 = gaussian_mountain(x, y, 0.34, ridge_axis(0.34) + 0.00, 0.12, 0.08, 0.13)
-
-    broad_noise = terrain_noise(0.9 * x, 0.9 * y)
-    detail_noise = terrain_noise(1.7 * x, 1.7 * y)
-
-    slope_ribs = (1.0 - np.abs(np.sin(16.0 * (y - axis0) + 3.0 * x + 0.4 * np.sin(4.0 * x)))) ** 2
-    slope_ribs *= np.clip(main_ridge * 1.8, 0.0, 1.0)
-
-    relief = (
-        0.34 * main_ridge
-        + 0.18 * branch_ridge
-        + p1 + p2 + p3 + p4
-        + 0.05 * broad_noise
-        + 0.025 * detail_noise
-        + 0.04 * slope_ribs
+    warped_radius = np.hypot(x, y) + 0.08 * fbm(
+        x * 1.4,
+        y * 1.4,
+        seed + 29,
     )
 
-    z = MAX_HEIGHT * (base + falloff * relief)
-
-    coastal_softening = 0.07 * np.exp(-((q - 0.94) / 0.10) ** 2)
-    z = np.maximum(0.0, z - coastal_softening * MAX_HEIGHT)
-
-    return z
+    q = warped_radius / boundary
+    t = np.clip((q - 0.70) / 0.30, 0.0, 1.0)
+    return q, 1.0 - smoothstep(t)
 
 
-x_lin = np.linspace(-1.15, 1.15, GRID_X)
-y_lin = np.linspace(-1.15, 1.15, GRID_Y)
+def island_mask(x, y, seed):
+    return island_profile(x, y, seed)[1]
 
-X, Y = np.meshgrid(x_lin, y_lin)
 
-dx = x_lin[1] - x_lin[0]
-dy = y_lin[1] - y_lin[0]
+def terrain_height(x, y, seed):
+    q, mask = island_profile(x, y, seed)
+    interior_slope = np.power(np.clip(1.0 - q, 0.0, 1.0), 0.65)
+    broad = 0.5 + 0.5 * fbm(x * 1.1, y * 1.1, seed)
+    ridges = np.power(
+        1.0 - np.abs(fbm(x * 2.4, y * 2.4, seed + 53)),
+        1.7,
+    )
+    detail = fbm(x * 5.0, y * 5.0, seed + 89)
 
-X = X + rng.uniform(-0.22 * dx, 0.22 * dx, X.shape)
-Y = Y + rng.uniform(-0.22 * dy, 0.22 * dy, Y.shape)
+    return mask * (
+        0.025 +
+        0.16 * interior_slope +
+        0.22 * interior_slope * broad +
+        0.18 * interior_slope * ridges +
+        0.03 * interior_slope * detail
+    )
 
-x = X.ravel()
-y = Y.ravel()
 
-q = normalized_radius(x, y)
-inside = q <= 1.0
+def generate_point_cloud(seed, grid_x=GRID_X, grid_y=GRID_Y):
+    rng = np.random.default_rng(seed)
+    x_lin = np.linspace(-1.15, 1.15, grid_x)
+    y_lin = np.linspace(-1.15, 1.15, grid_y)
+    x_grid, y_grid = np.meshgrid(x_lin, y_lin)
 
-x = x[inside]
-y = y[inside]
+    dx = x_lin[1] - x_lin[0]
+    dy = y_lin[1] - y_lin[0]
+    x_grid += rng.uniform(-0.22 * dx, 0.22 * dx, x_grid.shape)
+    y_grid += rng.uniform(-0.22 * dy, 0.22 * dy, y_grid.shape)
 
-z = height_function(x, y)
+    x = x_grid.ravel()
+    y = y_grid.ravel()
+    mask = island_mask(x, y, seed)
 
-points = np.column_stack((x, y, z))
+    inside = mask >= 0.04
+    x = x[inside]
+    y = y[inside]
+    mask = mask[inside]
+    z = terrain_height(x, y, seed)
 
-points[:, 0] -= points[:, 0].mean()
-points[:, 1] -= points[:, 1].mean()
-points[:, 2] -= points[:, 2].min()
+    points = np.column_stack((x, z, y))
+    points[:, 0] -= points[:, 0].mean()
+    points[:, 1] -= points[:, 1].min()
+    points[:, 2] -= points[:, 2].mean()
 
-extent = np.max(np.linalg.norm(points[:, :2], axis=1))
-points[:, :2] /= extent
-points[:, 2] /= extent
+    extent = np.max(np.linalg.norm(points[:, [0, 2]], axis=1))
+    points[:, [0, 2]] /= extent
+    points[:, 1] /= extent
 
-colors = np.tile(POINT_COLOR, (len(points), 1))
+    normalized_height = np.clip(points[:, 1] / 0.75, 0.0, 1.0)
+    colors = np.zeros((len(points), 3), dtype=np.uint8)
+    colors[:, 0] = (158 + 97 * normalized_height).astype(np.uint8)
+    colors[:, 1] = (203 + 52 * normalized_height).astype(np.uint8)
+    colors[:, 2] = 255
 
-cloud = pv.PolyData(points)
-cloud.point_data["RGB"] = colors
+    return points, colors
 
-plotter = pv.Plotter()
 
-plotter.add_points(
-    cloud,
-    scalars="RGB",
-    rgb=True,
-    point_size=2,
-    render_points_as_spheres=True
-)
+def main():
+    import pyvista as pv
 
-plotter.show_axes()
-plotter.show()
+    parser = argparse.ArgumentParser(description="Generate a seeded island point cloud.")
+    parser.add_argument("--seed", type=int, default=DEFAULT_SEED)
+    parser.add_argument("--output", type=Path, default=OUTPUT_FILE)
+    args = parser.parse_args()
 
-cloud.save(
-    OUTPUT_FILE,
-    binary=True,
-    texture="RGB"
-)
+    points, colors = generate_point_cloud(args.seed)
+    cloud = pv.PolyData(points)
+    cloud.point_data["RGB"] = colors
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    cloud.save(args.output, binary=True, texture="RGB")
+
+    print(f"Wrote {len(points)} points to {args.output} using seed {args.seed}")
+
+
+if __name__ == "__main__":
+    main()

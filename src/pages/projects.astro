@@ -2,10 +2,29 @@
 import Layout from "../layouts/layout.astro";
 ---
 
-<Layout>
+<Layout
+    title="Projects | Amine Maazizi"
+    description="Research projects and open-source software by Amine Maazizi."
+>
     <div id="seperation"></div>
     <div class="bullet-section">
-    <h2>Projects</h2>
-    <p>Here are some of the projects I have done in my free time.</p>
+        <h2>Projects</h2>
+        <p>Research projects and open-source software.</p>
+
+        <h3>Software</h3>
+        <ul class="project-list">
+            <li class="project">
+                <h4>not-MIWAE</h4>
+                <p>
+                    Unified PyTorch implementations of MIWAE, not-MIWAE,
+                    supMIWAE, and sup-not-MIWAE for missing-data modeling.
+                </p>
+                <p><code>pip install notmiwae-pytorch</code></p>
+                <p class="project-links">
+                    <a href="https://pypi.org/project/notmiwae-pytorch/" target="_blank" rel="noopener noreferrer">PyPI</a>
+                    <a href="https://github.com/Adam-Ousse/notmiwae_pytorch" target="_blank" rel="noopener noreferrer">Source code</a>
+                </p>
+            </li>
+        </ul>
     </div>
 </Layout>

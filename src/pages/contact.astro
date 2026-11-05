@@ -2,15 +2,23 @@
 import Layout from "../layouts/layout.astro";
 ---
 
-<Layout>
+<Layout
+    title="Contact | Amine Maazizi"
+    description="Contact information for Amine Maazizi."
+>
     <div id="seperation"></div>
     <div class="bullet-section">
-    <h2>Contact</h2>
-    <p>I'm happy to discuss possible collaborations or opportunities. Reach out via one of these emails.</p>
-    <ul>
-        <li><a href="#" class="email" id="1">amine.maazizi [at] ensta (dot) fr</a></li>
-        <li><a href="#" class="email" id="2">amine.maazizi [at] ip-paris (dot) fr</a></li>
-        <li><a href="#" class="email" id="3">amine.maazizi [at] epfl (dot) ch</a></li>
-    </ul>
+        <h2>Contact</h2>
+        <p>I'm happy to discuss possible collaborations or opportunities. Reach out via email.</p>
+        <ul class="contact-list">
+            <li>
+                <a href="#" class="email" aria-label="Copy Mines Paris email address">amine (dot) maazizi [at] minesparis (dot) psl (dot) eu</a>
+                <span class="contact-label">Mines Paris – PSL</span>
+            </li>
+            <li>
+                <a href="#" class="email" aria-label="Copy ENSTA Paris email address">amine (dot) maazizi [at] ensta (dot) fr</a>
+                <span class="contact-label">ENSTA Paris</span>
+            </li>
+        </ul>
     </div>
 </Layout>
